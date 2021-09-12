@@ -1,5 +1,38 @@
 /* *** Begin Bakery *** */
 
+/* Override industrytiles to accept all cargos. */
+item (FEAT_INDUSTRYTILES, ind_tile_bakery_1) {
+	property {
+		substitute: 60;
+		override: 60;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_bakery_2) {
+	property {
+		substitute: 61;
+		override: 61;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_bakery_3) {
+	property {
+		substitute: 62;
+		override: 62;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_bakery_4) {
+	property {
+		substitute: 63;
+		override: 63;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
 /* Construction check for Bakery */
 switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_bakery, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}

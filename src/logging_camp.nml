@@ -1,5 +1,45 @@
 /* Begin Logging Camp */
 
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
+	property {
+		substitute: 11;
+		override: 11;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_2) {
+	property {
+		substitute: 12;
+		override: 12;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_3) {
+	property {
+		substitute: 13;
+		override: 13;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_4) {
+	property {
+		substitute: 14;
+		override: 14;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
+	property {
+		substitute: 15;
+		override: 15;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
 /* Only cut trees December through March. */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11)) {return;}
 
