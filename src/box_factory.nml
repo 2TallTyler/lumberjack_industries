@@ -1,0 +1,56 @@
+/* *** Begin Box Factory *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_box_factory_1) {
+	property {
+		substitute: 43;
+		override: 43;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_box_factory_2) {
+	property {
+		substitute: 44;
+		override: 44;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_box_factory_3) {
+	property {
+		substitute: 45;
+		override: 45;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_box_factory_4) {
+	property {
+		substitute: 46;
+		override: 46;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Box Factory */
+switch (FEAT_INDUSTRIES, SELF, loc_check_box_factory, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_box_factory, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_box_factory) {
+	property {
+		substitute:	INDUSTRYTYPE_PRINTING_WORKS;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+			accept_cargo("PAPR", produce_cargo("MNSP", 0.5)),
+		];
+		name: string(STR_NAME_BOX_FACTORY);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BOX_FACTORY));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_box_factory;
+	}
+}

@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, WDPR, RFPR, GRAI, FOOD,
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD,
 }
 
 // Original ID
@@ -250,6 +250,30 @@ item (FEAT_CARGOS, cargo_paper, 0x09) {
 		station_list_colour:		14;
 		cargo_payment_list_colour:	14;
 		price_factor:				110;
+		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_packaging, 0x0A) {
+	property {
+		number:						0x0A;
+		sprite:						4313;
+		type_name:					string(STR_CARGO_NAME_PACKAGING);
+		unit_name:					string(STR_CARGO_NAME_PACKAGING);
+		type_abbreviation:			string(STR_CARGO_ABBREV_PACKAGING);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_EXPRESS, CC_PIECE_GOODS);
+		cargo_label:				"MNSP";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_PACKAGING);
+		penalty_lowerbound:			16;
+		single_penalty_length:		120;
+		station_list_colour:		56;
+		cargo_payment_list_colour:	56;
+		price_factor:				131;
 		capacity_multiplier:		1;		
 	}
 }
