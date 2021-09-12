@@ -1,0 +1,25 @@
+/* *** Begin Paper Mill *** */
+
+/* Construction check for Paper Mill */
+switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_paper_mill, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_paper_mill) {
+	property {
+		substitute:	INDUSTRYTYPE_PAPER_MILL;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+			accept_cargo("WOOD", produce_cargo("PAPR", 1)),
+			accept_cargo("RFPR"),
+		];
+		name: string(STR_NAME_PAPER_MILL);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_paper_mill;
+	}
+}

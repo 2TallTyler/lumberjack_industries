@@ -1,0 +1,24 @@
+/* *** Begin Bakery *** */
+
+/* Construction check for Bakery */
+switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_bakery, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_bakery) {
+	property {
+		substitute:	INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+			accept_cargo("GRAI", produce_cargo("FOOD", 0.5)),
+		];
+		name: string(STR_NAME_BAKERY);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BAKERY));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_bakery;
+	}
+}

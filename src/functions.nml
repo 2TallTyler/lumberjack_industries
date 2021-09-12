@@ -1,0 +1,65 @@
+/* Begin Functions */
+
+/**
+ * Bypass location check requirements if the industry is being funded or if we're in Scenario Editor.
+ * @return 1 if the industry is being funded or we're in Scenario Editor, else 0 (the industry is being generated during map generation or during a game).
+ */
+switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREATION_FUND || game_mode == GAMEMODE_EDITOR)) {return;}
+
+/**
+ * Helper function for IsWithinDistanceToTown()
+ * Note: The sum of the radii is greater than simply the largest radii, but it means larger towns have a greater range for industry placement.
+ * @returns the sum of the town's townzone radii. 
+ */
+ switch (FEAT_INDUSTRIES, PARENT, StoreTownRadii,   town_zone_0_radius_square +
+                                                    town_zone_1_radius_square + 
+                                                    town_zone_2_radius_square + 
+                                                    town_zone_3_radius_square + 
+                                                    town_zone_4_radius_square) {return;}
+
+/**
+ * Checks the distance from an industry to its parent town.
+ * The townzone radii and Euclidean distance are both squared, so we need to sqaure the padding parameter to match.
+ * @param padding Area around the town where industries can spawn.
+ * @return 1 if the industry is within the given distance to the town, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, IsWithinDistanceToTown, padding, (town_euclidean_dist(0,0) < ( (padding * padding) + StoreTownRadii()) ) ) {return;}
+
+/**
+ * Check if the industry is near a town - required for secondary industries.
+ * @return 1 if near a town, else 0.
+ */
+ switch (FEAT_INDUSTRIES, SELF, IsNearTown, IsWithinDistanceToTown(15)) {return;}
+
+/**
+ * Check if an industry's parent town has sufficient population.
+ * @param required The required population.
+ * @return 1 if the town has the required population, else 0.
+ */
+ switch (FEAT_INDUSTRIES, PARENT, TownHasPopulation, required, population >= required) {return;}
+
+/**
+ * Check if there are any industries of a given type within a given distance.
+ * @return 1 if there are no industries of the given type within the required distance, else 0.
+ */
+ switch (FEAT_INDUSTRIES, SELF, NoNearbyCompetitors, industrytype, required_distance, industry_distance(industrytype) > required_distance) {return;}
+
+ /**
+ * Check if an industry is within a range of elevation.
+ * @param min_z elevation (inclusive)
+ * @param max_z elevation (inclusive)
+ * @return 1 if the industry is at or between the specified min and max elevations, else 0
+ */
+switch (FEAT_INDUSTRIES, SELF, IndustryElevationCheck, min_z, max_z, nearby_tile_height(0,0) >= min_z && nearby_tile_height(0,0) <= max_z) {return;}
+
+/* Empty production block. */
+produce (produce_none, [], [])
+
+/* Consume idle workers (no cargo available to process). */ 
+produce (produce_idle_workers, [PASS: (incoming_cargo_waiting("PASS") > 200) ? (incoming_cargo_waiting("PASS") / 8) : 3;], [], 0)
+
+/* Check if we have idle workers to consume, else produce nothing. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_idle, incoming_cargo_waiting("PASS") > 0) {
+	1: produce_idle_workers;
+	produce_none;
+}

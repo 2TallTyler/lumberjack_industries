@@ -1,0 +1,21 @@
+/* Begin Logging Camp */
+
+/* Only cut trees December through March. */
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11)) {return;}
+
+item (FEAT_INDUSTRIES, industry_logging_camp) {
+	property {
+		substitute:	INDUSTRYTYPE_SAWMILL;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [produce_cargo("WOOD", 0)];
+		spec_flags:	bitmask(IND_FLAG_CUT_TREES);
+		name: string(STR_NAME_LOGGING_CAMP);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
+		prob_map_gen: 0;
+		prob_in_game: 0;
+		fund_cost_multiplier: 5;
+	}
+	graphics {
+		control_special:		switch_logging_camp_production_check_1;
+	}
+}
