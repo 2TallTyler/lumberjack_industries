@@ -17,6 +17,7 @@ STR_EMPTY							:
 
 STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_FARM_HELPTEXT                   :Only produces September through November.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
+
 STR_NAME_LOGGING_CAMP				:Logging Camp
 STR_NAME_PAPER_MILL                 :Paper Mill
 STR_NAME_FARM                       :Farm
@@ -27,6 +28,7 @@ STR_CARGO_NAME_WORKERS				:Workers
 STR_CARGO_SINGULAR_WORKERS			:Worker
 STR_CARGO_ABBREV_WORKERS			:{TINYFONT}WK
 STR_CARGO_QUANTITY_WORKERS			:{COMMA} worker{P "" s}
+
 STR_CARGO_NAME_CHEMICALS			:Chemicals
 STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
 STR_CARGO_QUANTITY_CHEMICALS		:{VOLUME} of chemicals
@@ -38,3 +40,7 @@ STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} of lumber
 STR_CARGO_NAME_PACKAGING			:Packaging
 STR_CARGO_ABBREV_PACKAGING			:{TINYFONT}PA
 STR_CARGO_QUANTITY_PACKAGING		:{WEIGHT} of packaging
+
+STR_CARGO_NAME_FERTILIZER			:Fertilizer
+STR_CARGO_ABBREV_FERTILIZER			:{TINYFONT}FT
+STR_CARGO_QUANTITY_FERTILIZER		:{WEIGHT} of fertilizer

@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD,
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD, FERT
 }
 
 // Original ID
@@ -275,6 +275,30 @@ item (FEAT_CARGOS, cargo_packaging, 0x0A) {
 		cargo_payment_list_colour:	56;
 		price_factor:				131;
 		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_fertilizer, 0x0B) {
+	property {
+		number:						0x0B;
+		sprite:						4320;
+		type_name:					string(STR_CARGO_NAME_FERTILIZER);
+		unit_name:					string(STR_CARGO_NAME_FERTILIZER);
+		type_abbreviation:			string(STR_CARGO_ABBREV_FERTILIZER);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_PIECE_GOODS, CC_BULK, CC_COVERED);
+		cargo_label:				"FERT";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_FERTILIZER);
+		penalty_lowerbound:			255;
+		single_penalty_length:		255;
+		price_factor:				123;
+		capacity_multiplier:		1;
+		station_list_colour:		118;
+		cargo_payment_list_colour:	118;
 	}
 }
 

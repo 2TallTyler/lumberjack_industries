@@ -68,6 +68,21 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_8) {
 switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_paper_mill, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_paper_mill,
+	[PASS: 1; WOOD: 1;],	// Consume
+	[PAPR: 1;],				// Produce
+	1 						// Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WOOD") > 0)) {
+	1: produce_paper_mill;
+	switch_produce_idle;
+}
+
+/* END PRODUCTION */
+
 item (FEAT_INDUSTRIES, industry_paper_mill) {
 	property {
 		substitute:	INDUSTRYTYPE_PAPER_MILL;
@@ -85,5 +100,9 @@ item (FEAT_INDUSTRIES, industry_paper_mill) {
 	}
 	graphics {
 		location_check: loc_check_paper_mill;
+		produce_cargo_arrival: switch_produce_paper_mill;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }

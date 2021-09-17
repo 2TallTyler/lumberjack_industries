@@ -56,28 +56,37 @@ switch (FEAT_INDUSTRIES, SELF, switch_farm_production_check_1, (current_month > 
 switch (FEAT_INDUSTRIES, SELF, loc_check_farm, !IsNearTown() && IndustryElevationCheck(0, 2) && NoNearbyCompetitors(industry_farm, 20))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
+/* BEGIN PRODUCTION: Read up from bottom */
+
+/* Boosted production if Fertilizier is supplied */
+produce (produce_farm_boosted,
+	[FERT: 3;],		// Consume
+	[GRAI: 128;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Regular production */
+produce (produce_farm,
+	[],				// Consume
+	[GRAI: 64;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Check for Fertilizier for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_2, incoming_cargo_waiting("FERT") >= 3) {1: produce_farm_boosted; produce_farm;}
+
 /* Farms only harvest September through November. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_1, current_month >= 8 && current_month < 11) {1: switch_produce_farm_2; produce_none;}
 
-produce (produce_farm_boosted_harvest, 
-    [],	// Consume
-	[GRAI: 256;],																				// Produce
-	0 																							// Don't run callback again
-	)
-
-produce (produce_farm_standard_harvest, 
-    [],	// Consume
-	[GRAI: 128;],																				// Produce
-	0 																							// Don't run callback again
-	)
-
-switch (FEAT_INDUSTRIES, SELF, produce_farm_1, current_month >= 8 && current_month < 11) {1: produce_farm_standard_harvest; switch_produce_idle;}
+/* END PRODUCTION */
 
 item (FEAT_INDUSTRIES, industry_farm) {
 	property {
 		substitute: INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 		life_type: IND_LIFE_TYPE_ORGANIC;
 		cargo_types: [
-            produce_cargo("GRAI", 0),
+			accept_cargo("FERT"),
+			produce_cargo("GRAI", 0),
             ];
 		spec_flags: bitmask(IND_FLAG_PLANT_FIELDS_PERIODICALLY, IND_FLAG_PLANT_FIELDS_WHEN_BUILT);
 		name: string(STR_NAME_FARM);
@@ -88,7 +97,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 	graphics {
 		control_special: switch_farm_production_check_1;
         location_check: loc_check_farm;
-        produce_256_ticks: produce_farm_1;
+        produce_256_ticks: switch_produce_farm_1;
 		extra_text_industry: string(STR_FARM_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

@@ -33,6 +33,32 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_4) {
 	}
 }
 
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_bakery_efficient,
+	[PASS: 4; GRAI: 4; MNSP: 1;],	// Consume
+	[FOOD: 4;],						// Produce
+	1 								// Run callback again
+	)
+
+produce (produce_bakery_basic,
+	[PASS: 4; GRAI: 4; MNSP: 1;],	// Consume
+	[FOOD: 2;],						// Produce
+	1 								// Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery_packaging, incoming_cargo_waiting("MNSP") > 0) {
+	1: produce_bakery_efficient;
+	produce_bakery_basic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("GRAI") >= 4)) {
+	1: switch_produce_bakery_packaging;
+	switch_produce_idle;
+}
+
+/* END PRODUCTION */
+
 /* Construction check for Bakery */
 switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_bakery, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
@@ -43,8 +69,9 @@ item (FEAT_INDUSTRIES, industry_bakery) {
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
 			accept_cargo("PASS"),
-			accept_cargo("GRAI", produce_cargo("FOOD", 0.5)),
+			accept_cargo("GRAI"),
 			accept_cargo("MNSP"),
+			produce_cargo("FOOD", 0),
 		];
 		name: string(STR_NAME_BAKERY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_BAKERY));
@@ -54,5 +81,9 @@ item (FEAT_INDUSTRIES, industry_bakery) {
 	}
 	graphics {
 		location_check: loc_check_bakery;
+		produce_cargo_arrival: switch_produce_bakery;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }

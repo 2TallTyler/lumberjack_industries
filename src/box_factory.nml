@@ -36,6 +36,21 @@ item (FEAT_INDUSTRYTILES, ind_tile_box_factory_4) {
 switch (FEAT_INDUSTRIES, SELF, loc_check_box_factory, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_box_factory, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_box_factory,
+	[PASS: 1; PAPR: 1;],	// Consume
+	[MNSP: 1;],				// Produce
+	1 						// Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("PAPR") > 0)) {
+	1: produce_box_factory;
+	switch_produce_idle;
+}
+
+/* END PRODUCTION */
+
 item (FEAT_INDUSTRIES, industry_box_factory) {
 	property {
 		substitute:	INDUSTRYTYPE_PRINTING_WORKS;
@@ -52,5 +67,9 @@ item (FEAT_INDUSTRIES, industry_box_factory) {
 	}
 	graphics {
 		location_check: loc_check_box_factory;
+		produce_cargo_arrival: switch_produce_box_factory;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 	}
 }
