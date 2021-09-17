@@ -57,5 +57,6 @@ item (FEAT_INDUSTRIES, industry_logging_camp) {
 	}
 	graphics {
 		control_special:		switch_logging_camp_production_check_1;
+		extra_text_industry: string(STR_LOGGING_CAMP_HELPTEXT);
 	}
 }

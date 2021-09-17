@@ -89,6 +89,7 @@ item (FEAT_INDUSTRIES, industry_farm) {
 		control_special: switch_farm_production_check_1;
         location_check: loc_check_farm;
         produce_256_ticks: produce_farm_1;
+		extra_text_industry: string(STR_FARM_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
