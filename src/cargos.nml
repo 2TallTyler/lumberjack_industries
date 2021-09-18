@@ -85,22 +85,22 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 	property {
 		number:						0x03;
 		sprite:						4300;
-		type_name:					TTD_STR_CARGO_PLURAL_OIL;
-		unit_name:					TTD_STR_CARGO_SINGULAR_OIL;
-		type_abbreviation:			TTD_STR_ABBREV_OIL;
+		type_name:					string(STR_CARGO_NAME_OIL);
+		unit_name:					string(STR_CARGO_NAME_OIL);
+		type_abbreviation:			string(STR_CARGO_ABBREV_OIL);
 		weight:						0.9;
 		is_freight:					1;
 		cargo_classes:				bitmask(CC_LIQUID);
 		cargo_label:				"OIL_";
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_LITERS;
-		items_of_cargo:				TTD_STR_QUANTITY_OIL;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_OIL);
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
 		station_list_colour:		171;
 		cargo_payment_list_colour:	171;
-		price_factor:				72;
+		price_factor:				101;
 		capacity_multiplier:		1;		
 	}
 }

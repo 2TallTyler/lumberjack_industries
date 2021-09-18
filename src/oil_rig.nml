@@ -1,0 +1,87 @@
+/* Begin Oil Rig */
+
+/* Override industrytiles to accept all cargos. */
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_2) {
+	property {
+		substitute: 25;
+		override: 25;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_3) {
+	property {
+		substitute: 26;
+		override: 26;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_4) {
+	property {
+		substitute: 27;
+		override: 27;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_5) {
+	property {
+		substitute: 28;
+		override: 28;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Oil Rig */
+switch (FEAT_INDUSTRIES, SELF, loc_check_oil_rig,
+	IsNearMapEdge() && 
+	(DistanceFromWaterOrLand(8) || IsBeingFunded())
+) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+/* Boosted production if Mail is supplied */
+produce (produce_oil_rig_boosted,
+	[MAIL: 3;],		// Consume
+	[OIL_: 64;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Regular production */
+produce (produce_oil_rig,
+	[],				// Consume
+	[OIL_: 32;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Check for Mail for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("MAIL") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_oil_rig) {
+	property {
+		substitute: INDUSTRYTYPE_OIL_RIG;
+		life_type: IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types: [
+			accept_cargo("MAIL"),
+			produce_cargo("OIL_", 0),
+            ];
+		spec_flags: bitmask(IND_FLAG_BUILT_ON_WATER, IND_FLAG_AI_CREATES_AIR_AND_SHIP_ROUTES);
+		name: string(STR_NAME_OIL_RIG);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_RIG));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+	}
+	graphics {
+        location_check: loc_check_oil_rig;
+        produce_256_ticks: switch_produce_oil_rig;
+		extra_text_industry: string(STR_OIL_RIG_HELPTEXT);
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}

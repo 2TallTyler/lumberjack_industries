@@ -17,17 +17,23 @@ STR_EMPTY							:
 
 STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_FARM_HELPTEXT                   :Only produces September through November.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
+STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 
 STR_NAME_LOGGING_CAMP				:Logging Camp
 STR_NAME_PAPER_MILL                 :Paper Mill
 STR_NAME_FARM                       :Farm
 STR_NAME_BAKERY                     :Bakery
 STR_NAME_BOX_FACTORY                :Box Factory
+STR_NAME_OIL_RIG                    :Oil Rig
 
 STR_CARGO_NAME_WORKERS				:Workers
 STR_CARGO_SINGULAR_WORKERS			:Worker
 STR_CARGO_ABBREV_WORKERS			:{TINYFONT}WK
 STR_CARGO_QUANTITY_WORKERS			:{COMMA} worker{P "" s}
+
+STR_CARGO_NAME_OIL		        	:Oil
+STR_CARGO_ABBREV_OIL	        	:{TINYFONT}OL
+STR_CARGO_QUANTITY_OIL      		:{WEIGHT} of oil
 
 STR_CARGO_NAME_CHEMICALS			:Chemicals
 STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
