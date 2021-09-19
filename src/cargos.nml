@@ -119,7 +119,7 @@ item (FEAT_CARGOS, cargo_chemicals, 0x04) {
 		cargo_label:				"RFPR";
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		1.0;
-		units_of_cargo:				TTD_STR_LITERS;
+		units_of_cargo:				TTD_STR_TONS;
 		items_of_cargo:				string(STR_CARGO_QUANTITY_CHEMICALS);
 		penalty_lowerbound:			20;
 		single_penalty_length:		255;
