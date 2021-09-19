@@ -156,13 +156,13 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_wheat, 0x04) {
+item (FEAT_CARGOS, cargo_wheat, 0x06) {
 	property {
-		number:						0x04;
+		number:						0x06;
 		sprite:						4303;
 		type_name:					TTD_STR_CARGO_PLURAL_WHEAT;
 		unit_name:					TTD_STR_CARGO_SINGULAR_WHEAT;
-		type_abbreviation:			string(STR_CARGO_ABBREV_CHEMICALS);
+		type_abbreviation:			TTD_STR_ABBREV_WHEAT;
 		weight:						1.0;
 		is_freight:					1;
 		cargo_classes:				bitmask(CC_BULK);
