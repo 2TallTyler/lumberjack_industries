@@ -25,6 +25,7 @@ STR_NAME_FARM                       :Farm
 STR_NAME_BAKERY                     :Bakery
 STR_NAME_BOX_FACTORY                :Box Factory
 STR_NAME_OIL_RIG                    :Oil Rig
+STR_NAME_OIL_REFINERY               :Oil Refinery
 
 STR_CARGO_NAME_WORKERS				:Workers
 STR_CARGO_SINGULAR_WORKERS			:Worker

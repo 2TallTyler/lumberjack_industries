@@ -1,0 +1,106 @@
+/* *** Begin Oil Refinery *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_1) {
+	property {
+		substitute: 18;
+		override: 18;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_2) {
+	property {
+		substitute: 19;
+		override: 19;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_3) {
+	property {
+		substitute: 20;
+		override: 20;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_4) {
+	property {
+		substitute: 21;
+		override: 21;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_5) {
+	property {
+		substitute: 22;
+		override: 22;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) {
+	property {
+		substitute: 23;
+		override: 23;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Oil Refinery */
+switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_oil_refinery, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_oil_refinery,
+	[PASS: 4; OIL_: 4;],      // Consume
+	[RFPR: 1; FERT: 1;],      // Produce
+	1                         // Run callback again
+	)
+
+produce (produce_oil_refinery_stockpile,
+	[OIL_: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+/* We don't have both Workers and Oil. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_idle, incoming_cargo_waiting("OIL_") > 4096) {
+	1: produce_oil_refinery_stockpile;
+	switch_produce_idle;
+}
+
+/* Check if we have both Workers and Oil */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("OIL_") >= 4)) {
+	1: produce_oil_refinery;
+	switch_produce_oil_refinery_idle;
+}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_oil_refinery) {
+	property {
+		substitute:	INDUSTRYTYPE_OIL_REFINERY;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+            accept_cargo("OIL_"),
+            produce_cargo("FERT", 0),
+            produce_cargo("RFPR", 0),
+		];
+		name: string(STR_NAME_OIL_REFINERY);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_oil_refinery;
+		produce_cargo_arrival: switch_produce_oil_refinery;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}
