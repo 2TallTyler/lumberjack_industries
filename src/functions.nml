@@ -88,7 +88,7 @@ produce (produce_none, [], [])
 /* Consume idle workers (no cargo available to process). */ 
 produce (produce_idle_workers, [PASS: (incoming_cargo_waiting("PASS") > 200) ? (incoming_cargo_waiting("PASS") / 8) : 3;], [], 0)
 
-/* Check if we have idle workers to consume, else produce nothing. */
+/* Check if we have idle workers to consume, else consume nothing. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_idle, incoming_cargo_waiting("PASS") > 0) {
 	1: produce_idle_workers;
 	produce_none;
