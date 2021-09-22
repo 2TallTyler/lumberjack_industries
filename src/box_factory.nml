@@ -44,9 +44,23 @@ produce (produce_box_factory,
 	1 						// Run callback again
 	)
 
+produce (produce_box_factory_stockpile,
+	[PAPR: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+/* We don't have both Workers and Paper. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory_idle, incoming_cargo_waiting("PAPR") > 4096) {
+	1: produce_box_factory_stockpile;
+	switch_produce_idle;
+}
+
+/* Check if we have both Workers and Paper */
+
 switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("PAPR") > 0)) {
 	1: produce_box_factory;
-	switch_produce_idle;
+	switch_produce_box_factory_idle;
 }
 
 /* END PRODUCTION */
