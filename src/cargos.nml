@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD, FERT
+	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD, FERT, KAOL, FUEL
 }
 
 // Original ID
@@ -324,5 +324,53 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 		cargo_payment_list_colour:	48;
 		price_factor:				158;
 		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_kaolin, 0x0D) {
+	property {
+		number:						0x0D;
+		sprite:						4320;
+		type_name:					string(STR_CARGO_NAME_KAOLIN);
+		unit_name:					string(STR_CARGO_NAME_KAOLIN);
+		type_abbreviation:			string(STR_CARGO_ABBREV_KAOLIN);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_BULK, CC_LIQUID, CC_COVERED);
+		cargo_label:				"KAOL";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_KAOLIN);
+		penalty_lowerbound:			30;
+		single_penalty_length:		255;
+		price_factor:				100;
+		capacity_multiplier:		1;
+		station_list_colour:		148;
+		cargo_payment_list_colour:	148;
+	}
+}
+
+item (FEAT_CARGOS, cargo_fuel, 0x0E) {
+	property {
+		number:						0x0E;
+		sprite:						4300;
+		type_name:					string(STR_CARGO_NAME_FUEL);
+		unit_name:					string(STR_CARGO_NAME_FUEL);
+		type_abbreviation:			string(STR_CARGO_ABBREV_FUEL);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_LIQUID);
+		cargo_label:				"FUEL";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_FUEL);
+		penalty_lowerbound:			20;
+		single_penalty_length:		128;
+		price_factor:				116;
+		capacity_multiplier:		1;
+		station_list_colour:		143;
+		cargo_payment_list_colour:	143;
 	}
 }

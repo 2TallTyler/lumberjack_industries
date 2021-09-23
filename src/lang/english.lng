@@ -18,6 +18,7 @@ STR_EMPTY							:
 STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_FARM_HELPTEXT                   :Only produces September through November.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
 STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
+STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 
 STR_NAME_LOGGING_CAMP				:Logging Camp
 STR_NAME_PAPER_MILL                 :Paper Mill
@@ -26,6 +27,7 @@ STR_NAME_BAKERY                     :Bakery
 STR_NAME_BOX_FACTORY                :Box Factory
 STR_NAME_OIL_RIG                    :Oil Rig
 STR_NAME_OIL_REFINERY               :Oil Refinery
+STR_NAME_KAOLIN_MINE                :Kaolin Mine
 
 STR_CARGO_NAME_WORKERS				:Workers
 STR_CARGO_SINGULAR_WORKERS			:Worker
@@ -51,3 +53,11 @@ STR_CARGO_QUANTITY_PACKAGING		:{WEIGHT} of packaging
 STR_CARGO_NAME_FERTILIZER			:Fertilizer
 STR_CARGO_ABBREV_FERTILIZER			:{TINYFONT}FT
 STR_CARGO_QUANTITY_FERTILIZER		:{WEIGHT} of fertilizer
+
+STR_CARGO_NAME_KAOLIN			    :Kaolin
+STR_CARGO_ABBREV_KAOLIN			    :{TINYFONT}KL
+STR_CARGO_QUANTITY_KAOLIN		    :{WEIGHT} of kaolin
+
+STR_CARGO_NAME_FUEL		        	:Fuel
+STR_CARGO_ABBREV_FUEL	        	:{TINYFONT}FU
+STR_CARGO_QUANTITY_FUEL      		:{WEIGHT} of fuel

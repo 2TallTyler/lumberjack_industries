@@ -55,9 +55,9 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsBeingFunded() || (IsNea
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_oil_refinery,
-	[PASS: 4; OIL_: 4;],      // Consume
-	[RFPR: 1; FERT: 1;],      // Produce
-	1                         // Run callback again
+	[PASS: 3; OIL_: 3;],            // Consume
+	[RFPR: 1; FERT: 1; FUEL: 1;],   // Produce
+	1                               // Run callback again
 	)
 
 produce (produce_oil_refinery_stockpile,
@@ -73,7 +73,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_idle, incoming_cargo_
 }
 
 /* Check if we have both Workers and Oil */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("OIL_") >= 4)) {
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, (incoming_cargo_waiting("PASS") >= 3 && incoming_cargo_waiting("OIL_") >= 3)) {
 	1: produce_oil_refinery;
 	switch_produce_oil_refinery_idle;
 }
@@ -87,8 +87,9 @@ item (FEAT_INDUSTRIES, industry_oil_refinery) {
 		cargo_types: [
 			accept_cargo("PASS"),
             accept_cargo("OIL_"),
-            produce_cargo("FERT", 0),
+			produce_cargo("FUEL", 0),
             produce_cargo("RFPR", 0),
+            produce_cargo("FERT", 0),
 		];
 		name: string(STR_NAME_OIL_REFINERY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
