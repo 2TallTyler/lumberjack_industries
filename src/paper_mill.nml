@@ -180,6 +180,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 14) {
 	graphics {
 		location_check: loc_check_paper_mill;
 		produce_cargo_arrival: switch_produce_paper_mill;
+		extra_text_industry: string(STR_PAPER_MILL_HELPTEXT);
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

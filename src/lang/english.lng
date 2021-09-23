@@ -19,6 +19,8 @@ STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To
 STR_FARM_HELPTEXT                   :Only produces September through November.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
 STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
+STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
+STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit of Wood:{} {WHITE}Quarter{BLACK}: 1 Worker{} {WHITE}Half{BLACK}: 1 Worker + 0.5 Kaolin or 0.5 Chemicals{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Kaolin + 0.5 Chemicals
 
 STR_NAME_LOGGING_CAMP				:Logging Camp
 STR_NAME_PAPER_MILL                 :Paper Mill
