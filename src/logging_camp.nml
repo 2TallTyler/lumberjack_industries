@@ -40,14 +40,29 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 	}
 }
 
+/* Boosted production if Mail is supplied */
+produce (produce_logging_camp_boosted,
+	[MAIL: 3;],     // Consume
+	[],             // Produce (none, since cargo is produced by special flag behavior)
+	0               // Don't run callback again
+	)
+
+/* Check for Mail for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_logging_camp, incoming_cargo_waiting("MAIL") >= 3) {1: produce_logging_camp_boosted; produce_none;}
+
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_2, (incoming_cargo_waiting("MAIL") >= 3 || current_day_of_month % 2 == 0)) {return;}
+
 /* Only cut trees December through March. */
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11)) {return;}
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11) && switch_logging_camp_production_check_2()) {return;}
 
 item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 	property {
 		substitute:	INDUSTRYTYPE_SAWMILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;
-		cargo_types: [produce_cargo("WOOD", 0)];
+		cargo_types: [
+			accept_cargo("MAIL"),
+			produce_cargo("WOOD", 0),
+		];
 		spec_flags:	bitmask(IND_FLAG_CUT_TREES);
 		name: string(STR_NAME_LOGGING_CAMP);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
@@ -56,7 +71,8 @@ item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 		fund_cost_multiplier: 5;
 	}
 	graphics {
-		control_special:		switch_logging_camp_production_check_1;
+		control_special: switch_logging_camp_production_check_1;
+		produce_256_ticks: switch_produce_logging_camp;
 		extra_text_industry: string(STR_LOGGING_CAMP_HELPTEXT);
 	}
 }
