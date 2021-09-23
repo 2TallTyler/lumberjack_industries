@@ -293,8 +293,8 @@ item (FEAT_CARGOS, cargo_fertilizer, 0x0B) {
 		town_growth_multiplier:		0;
 		units_of_cargo:				TTD_STR_TONS;
 		items_of_cargo:				string(STR_CARGO_QUANTITY_FERTILIZER);
-		penalty_lowerbound:			255;
-		single_penalty_length:		255;
+		penalty_lowerbound:			22;
+		single_penalty_length:		44;
 		price_factor:				123;
 		capacity_multiplier:		1;
 		station_list_colour:		118;
