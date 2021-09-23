@@ -36,15 +36,15 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_4) {
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_bakery_efficient,
-	[PASS: 4; GRAI: 4; MNSP: 1;],	// Consume
-	[FOOD: 4;],						// Produce
-	1 								// Run callback again
+	[PASS: 2; GRAI: 2; MNSP: 2;],   // Consume
+	[FOOD: 2;],                     // Produce
+	1                               // Run callback again
 	)
 
 produce (produce_bakery_basic,
-	[PASS: 4; GRAI: 4; MNSP: 1;],	// Consume
-	[FOOD: 2;],						// Produce
-	1 								// Run callback again
+	[PASS: 2; GRAI: 2; MNSP: 2;],   // Consume
+	[FOOD: 1;],                     // Produce
+	1                               // Run callback again
 	)
 
 /* Is production boosted by Packaging? */
@@ -67,7 +67,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery_idle, incoming_cargo_waitin
 }
 
 /* Check if we have both Workers and Grain */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("GRAI") >= 4)) {
+switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery, (incoming_cargo_waiting("PASS") >= 2 && incoming_cargo_waiting("GRAI") >= 2)) {
 	1: switch_produce_bakery_packaging;
 	switch_produce_bakery_idle;
 }
