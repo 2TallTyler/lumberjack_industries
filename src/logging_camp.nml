@@ -43,7 +43,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 /* Only cut trees December through March. */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11)) {return;}
 
-item (FEAT_INDUSTRIES, industry_logging_camp) {
+item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 	property {
 		substitute:	INDUSTRYTYPE_SAWMILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;

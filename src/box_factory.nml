@@ -65,7 +65,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory, (incoming_cargo_waiti
 
 /* END PRODUCTION */
 
-item (FEAT_INDUSTRIES, industry_box_factory) {
+item (FEAT_INDUSTRIES, industry_box_factory, 7) {
 	property {
 		substitute:	INDUSTRYTYPE_PRINTING_WORKS;
 		life_type: IND_LIFE_TYPE_PROCESSING;

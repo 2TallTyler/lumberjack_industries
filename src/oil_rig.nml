@@ -61,7 +61,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("M
 
 /* END PRODUCTION */
 
-item (FEAT_INDUSTRIES, industry_oil_rig) {
+item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
 	property {
 		substitute: INDUSTRYTYPE_OIL_RIG;
 		life_type: IND_LIFE_TYPE_EXTRACTIVE;

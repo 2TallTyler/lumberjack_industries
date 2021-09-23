@@ -159,7 +159,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, (incoming_cargo_waitin
 
 /* END PRODUCTION */
 
-item (FEAT_INDUSTRIES, industry_paper_mill) {
+item (FEAT_INDUSTRIES, industry_paper_mill, 14) {
 	property {
 		substitute:	INDUSTRYTYPE_PAPER_MILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;

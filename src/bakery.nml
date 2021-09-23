@@ -78,7 +78,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery, (incoming_cargo_waiting("P
 switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_bakery, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
-item (FEAT_INDUSTRIES, industry_bakery) {
+item (FEAT_INDUSTRIES, industry_bakery, 13) {
 	property {
 		substitute:	INDUSTRYTYPE_FOOD_PROCESSING_PLANT;
 		life_type: IND_LIFE_TYPE_PROCESSING;

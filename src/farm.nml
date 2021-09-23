@@ -80,7 +80,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_1, current_month >= 8 && curr
 
 /* END PRODUCTION */
 
-item (FEAT_INDUSTRIES, industry_farm) {
+item (FEAT_INDUSTRIES, industry_farm, 9) {
 	property {
 		substitute: INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM;
 		life_type: IND_LIFE_TYPE_ORGANIC;
