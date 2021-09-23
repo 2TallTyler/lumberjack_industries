@@ -60,23 +60,32 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_farm, !IsNearTown() && IndustryElevatio
 
 /* Boosted production if Fertilizier is supplied */
 produce (produce_farm_boosted,
-	[FERT: 3;],		// Consume
-	[GRAI: 128;],	// Produce
-	0 				// Don't run callback again
+	[FERT: 3;],     // Consume
+	[GRAI: 128;],   // Produce
+	0               // Don't run callback again
 	)
 
 /* Regular production */
 produce (produce_farm,
-	[],				// Consume
-	[GRAI: 64;],	// Produce
-	0 				// Don't run callback again
+	[],             // Consume
+	[GRAI: 64;],    // Produce
+	0               // Don't run callback again
+	)
+
+produce (produce_farm_idle,
+	[FERT: 3;],     // Consume
+	[],             // Produce
+	0               // Don't run callback again
 	)
 
 /* Check for Fertilizier for normal or boosted production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_2, incoming_cargo_waiting("FERT") >= 3) {1: produce_farm_boosted; produce_farm;}
 
+/* Even not during harvest months, consume Fertilizer*/
+switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_idle, incoming_cargo_waiting("FERT") >= 3) {1: produce_farm_idle; produce_none;}
+
 /* Farms only harvest September through November. */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_1, current_month >= 8 && current_month < 11) {1: switch_produce_farm_2; produce_none;}
+switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_1, current_month >= 8 && current_month < 11) {1: switch_produce_farm_2; switch_produce_farm_idle;}
 
 /* END PRODUCTION */
 
