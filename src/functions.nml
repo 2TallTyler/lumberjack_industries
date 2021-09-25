@@ -32,11 +32,17 @@ switch (FEAT_INDUSTRIES, SELF, IsWithinDistanceToTown, padding, (town_euclidean_
  switch (FEAT_INDUSTRIES, SELF, IsNearTown, IsWithinDistanceToTown(15)) {return;}
 
 /**
- * Check if an industry's parent town has sufficient population.
- * @param required The required population.
+ * Get a town's population.
+ * @return the population of the town.
+ */
+ switch (FEAT_INDUSTRIES, PARENT, TownPopulation, population) {return;}
+
+/**
+ * Check if a town has sufficient population to support a secondary industry.
+ * @param The required population, set by NewGRF Parameters
  * @return 1 if the town has the required population, else 0.
  */
- switch (FEAT_INDUSTRIES, PARENT, TownHasPopulation, required, population >= required) {return;}
+switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (param_secondary_pop + (param_secondary_pop * (industry_town_count(industry_bakery) + industry_town_count(industry_box_factory) + industry_town_count(industry_oil_refinery) + industry_town_count(industry_paper_mill))))) {return;}
 
 /**
  * Check if there are any industries of a given type within a given distance.

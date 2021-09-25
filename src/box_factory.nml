@@ -33,7 +33,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_box_factory_4) {
 }
 
 /* Construction check for Box Factory */
-switch (FEAT_INDUSTRIES, SELF, loc_check_box_factory, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_box_factory, 128)))
+switch (FEAT_INDUSTRIES, SELF, loc_check_box_factory, IsBeingFunded() || (IsNearTown() && TownHasSecondaryPopulation() && NoNearbyCompetitors(industry_box_factory, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */

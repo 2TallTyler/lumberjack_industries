@@ -49,7 +49,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) {
 }
 
 /* Construction check for Oil Refinery */
-switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_oil_refinery, 128)))
+switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsBeingFunded() || (IsNearTown() && TownHasSecondaryPopulation() && NoNearbyCompetitors(industry_oil_refinery, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */

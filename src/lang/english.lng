@@ -10,6 +10,9 @@ STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 
 STR_ERROR_NO_ITL					:{TITLE} requires Improved Town Layouts version 1.4.0 or better.
 STR_ERROR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
+STR_PARAM_SECONDARY_POP_NAME        :Town population per secondary industry
+STR_PARAM_SECONDARY_POP_DESC        :The population required to support each secondary industry (Bakery, Box Factory, Oil Refinery, Paper Mill).
+
 STR_TOWN							:{STRING}
 STR_STATION							:{STRING} {STRING}
 

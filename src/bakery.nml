@@ -88,7 +88,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery, (incoming_cargo_waiting("P
 /* END PRODUCTION */
 
 /* Construction check for Bakery */
-switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasPopulation(500) && NoNearbyCompetitors(industry_bakery, 128)))
+switch (FEAT_INDUSTRIES, SELF, loc_check_bakery, IsBeingFunded() || (IsNearTown() && TownHasSecondaryPopulation() && NoNearbyCompetitors(industry_bakery, 128)))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 item (FEAT_INDUSTRIES, industry_bakery, 13) {
