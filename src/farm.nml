@@ -102,6 +102,7 @@ item (FEAT_INDUSTRIES, industry_farm, 9) {
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
 		prob_map_gen: 1;
 		prob_in_game: 0;
+		fund_cost_multiplier: 40;
 	}
 	graphics {
 		control_special: switch_farm_production_check_1;

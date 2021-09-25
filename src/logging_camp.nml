@@ -68,7 +68,7 @@ item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
 		prob_map_gen: 0;
 		prob_in_game: 0;
-		fund_cost_multiplier: 5;
+		fund_cost_multiplier: 4;
 	}
 	graphics {
 		control_special: switch_logging_camp_production_check_1;
