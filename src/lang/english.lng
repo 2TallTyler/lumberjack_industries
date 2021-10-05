@@ -1,31 +1,30 @@
 ##grflangid 0x01
 ##plural 0
 
-STR_GRF_NAME						:{TITLE} {VERSION}
-STR_GRF_DESC						:{ORANGE}I'm a lumberjack and I'm OK.{BLACK} More info coming soon!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}I'm a lumberjack and I'm OK.{BLACK} More info coming soon!{}{}{BLACK}Created by 2TallTyler.
 
-STR_WEBSITE							:https://github.com/2TallTyler/lumberjack_industries/blob/main/README.md
+STR_WEBSITE                         :https://github.com/2TallTyler/lumberjack_industries/blob/main/README.md
 
-STR_ERROR_GAME_VERSION				:{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
-STR_ERROR_NO_ITL					:{TITLE} requires Improved Town Layouts version 1.4.0 or better.
-STR_ERROR_INCOMPATIBLE_SET			:{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
+STR_ERROR_GAME_VERSION              :{TITLE} requires OpenTTD version 1.10.0, JGR version 0.34, or better.
+STR_ERROR_NO_ITL                    :{TITLE} requires Improved Town Layouts version 1.4.0 or better.
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_SECONDARY_POP_NAME        :Town population per secondary industry
 STR_PARAM_SECONDARY_POP_DESC        :The population required to support each secondary industry (Bakery, Box Factory, Oil Refinery, Paper Mill).
 
-STR_TOWN							:{STRING}
-STR_STATION							:{STRING} {STRING}
-
-STR_EMPTY							:
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
 
 STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_FARM_HELPTEXT                   :Only produces September through November.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
 STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
 STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
+STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
 STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit of Wood:{} {WHITE}Quarter{BLACK}: 1 Worker{} {WHITE}Half{BLACK}: 1 Worker + 0.5 Kaolin or 0.5 Chemicals{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Kaolin + 0.5 Chemicals
 
-STR_NAME_LOGGING_CAMP				:Logging Camp
+STR_NAME_LOGGING_CAMP               :Logging Camp
 STR_NAME_PAPER_MILL                 :Paper Mill
 STR_NAME_FARM                       :Farm
 STR_NAME_BAKERY                     :Bakery
@@ -34,35 +33,35 @@ STR_NAME_OIL_RIG                    :Oil Rig
 STR_NAME_OIL_REFINERY               :Oil Refinery
 STR_NAME_KAOLIN_MINE                :Kaolin Mine
 
-STR_CARGO_NAME_WORKERS				:Workers
-STR_CARGO_SINGULAR_WORKERS			:Worker
-STR_CARGO_ABBREV_WORKERS			:{TINYFONT}WK
-STR_CARGO_QUANTITY_WORKERS			:{COMMA} worker{P "" s}
+STR_CARGO_NAME_WORKERS              :Workers
+STR_CARGO_SINGULAR_WORKERS          :Worker
+STR_CARGO_ABBREV_WORKERS            :{TINYFONT}WK
+STR_CARGO_QUANTITY_WORKERS          :{COMMA} worker{P "" s}
 
-STR_CARGO_NAME_OIL		        	:Oil
-STR_CARGO_ABBREV_OIL	        	:{TINYFONT}OL
-STR_CARGO_QUANTITY_OIL      		:{WEIGHT} of oil
+STR_CARGO_NAME_OIL                  :Oil
+STR_CARGO_ABBREV_OIL                :{TINYFONT}OL
+STR_CARGO_QUANTITY_OIL              :{WEIGHT} of oil
 
-STR_CARGO_NAME_CHEMICALS			:Chemicals
-STR_CARGO_ABBREV_CHEMICALS			:{TINYFONT}CH
-STR_CARGO_QUANTITY_CHEMICALS		:{WEIGHT} of chemicals
+STR_CARGO_NAME_CHEMICALS            :Chemicals
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}CH
+STR_CARGO_QUANTITY_CHEMICALS        :{WEIGHT} of chemicals
 
-STR_CARGO_NAME_LUMBER				:Lumber
-STR_CARGO_ABBREV_LUMBER				:{TINYFONT}LU
-STR_CARGO_QUANTITY_LUMBER			:{WEIGHT} of lumber
+STR_CARGO_NAME_LUMBER               :Lumber
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}LU
+STR_CARGO_QUANTITY_LUMBER           :{WEIGHT} of lumber
 
-STR_CARGO_NAME_PACKAGING			:Packaging
-STR_CARGO_ABBREV_PACKAGING			:{TINYFONT}PA
-STR_CARGO_QUANTITY_PACKAGING		:{WEIGHT} of packaging
+STR_CARGO_NAME_PACKAGING            :Packaging
+STR_CARGO_ABBREV_PACKAGING          :{TINYFONT}PA
+STR_CARGO_QUANTITY_PACKAGING        :{WEIGHT} of packaging
 
-STR_CARGO_NAME_FERTILIZER			:Fertilizer
-STR_CARGO_ABBREV_FERTILIZER			:{TINYFONT}FT
-STR_CARGO_QUANTITY_FERTILIZER		:{WEIGHT} of fertilizer
+STR_CARGO_NAME_FERTILIZER           :Fertilizer
+STR_CARGO_ABBREV_FERTILIZER         :{TINYFONT}FT
+STR_CARGO_QUANTITY_FERTILIZER       :{WEIGHT} of fertilizer
 
-STR_CARGO_NAME_KAOLIN			    :Kaolin
-STR_CARGO_ABBREV_KAOLIN			    :{TINYFONT}KL
-STR_CARGO_QUANTITY_KAOLIN		    :{WEIGHT} of kaolin
+STR_CARGO_NAME_KAOLIN               :Kaolin
+STR_CARGO_ABBREV_KAOLIN             :{TINYFONT}KL
+STR_CARGO_QUANTITY_KAOLIN           :{WEIGHT} of kaolin
 
-STR_CARGO_NAME_FUEL		        	:Fuel
-STR_CARGO_ABBREV_FUEL	        	:{TINYFONT}FU
-STR_CARGO_QUANTITY_FUEL      		:{WEIGHT} of fuel
+STR_CARGO_NAME_FUEL                 :Fuel
+STR_CARGO_ABBREV_FUEL               :{TINYFONT}FU
+STR_CARGO_QUANTITY_FUEL             :{WEIGHT} of fuel
