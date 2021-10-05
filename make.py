@@ -9,7 +9,7 @@ newgrf_name = "lumberjack_industries"
 header_stuff = ["header", "cargos", "functions"]
 
 # Files to place in alphabetical order below
-unordered_stuff = ["logging_camp", "paper_mill", "farm", "bakery", "box_factory", "oil_rig", "oil_refinery", "kaolin_mine"]
+unordered_stuff = ["logging_camp", "paper_mill", "farm", "bakery", "box_factory", "oil_rig", "oil_refinery", "kaolin_mine","coal_mine", "power_plant"]
 
 # Do you want to copy the completed NewGRF to your OpenTTD folder? (True/False)
 copy_bool = True

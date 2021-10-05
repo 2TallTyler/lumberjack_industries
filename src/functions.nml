@@ -38,6 +38,13 @@ switch (FEAT_INDUSTRIES, SELF, IsWithinDistanceToTown, padding, (town_euclidean_
  switch (FEAT_INDUSTRIES, PARENT, TownPopulation, population) {return;}
 
 /**
+ * Check if a town has a required population.
+ * @param required The required population.
+ * @return 1 if the town's population is over the given requirement, else 0.
+ */
+switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > required) {return;}
+
+/**
  * Check if a town has sufficient population to support a secondary industry.
  * @param The required population, set by NewGRF Parameters
  * @return 1 if the town has the required population, else 0.

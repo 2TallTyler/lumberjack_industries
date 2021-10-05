@@ -1,0 +1,82 @@
+/* Begin Power Plant */
+
+/* Override industrytiles to accept all cargos. */
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_1) {
+	property {
+		substitute: 0;
+		override: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_2) {
+	property {
+		substitute: 1;
+		override: 1;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_3) {
+	property {
+		substitute: 2;
+		override: 2;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_4) {
+	property {
+		substitute: 3;
+		override: 3;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_5) {
+	property {
+		substitute: 4;
+		override: 4;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_6) {
+	property {
+		substitute: 5;
+		override: 5;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_power_plant_7) {
+	property {
+		substitute: 6;
+		override: 6;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Power Plant */
+switch (FEAT_INDUSTRIES, SELF, loc_check_power_plant, IsBeingFunded() || (IsNearTown() && TownHasPopulation(600) && NoNearbyCompetitors(industry_power_plant, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_power_plant, 17) {
+	property {
+		substitute: INDUSTRYTYPE_POWER_PLANT;
+		life_type: IND_LIFE_TYPE_BLACK_HOLE;
+		cargo_types: [
+			accept_cargo("COAL"),
+            ];
+		name: string(STR_NAME_POWER_PLANT);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_POWER_PLANT));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+        location_check: loc_check_power_plant;
+	}
+}

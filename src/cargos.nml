@@ -42,8 +42,8 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		is_freight:					1;
 		cargo_classes:				bitmask(CC_BULK);
 		cargo_label:				"COAL";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
+		town_growth_effect:			TOWNGROWTH_GOODS;
+		town_growth_multiplier:		16;
 		units_of_cargo:				TTD_STR_TONS;
 		items_of_cargo:				TTD_STR_QUANTITY_COAL;
 		penalty_lowerbound:			30;
