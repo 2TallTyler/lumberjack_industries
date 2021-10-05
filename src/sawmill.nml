@@ -1,0 +1,97 @@
+/* *** Begin Sawmill *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
+	property {
+		substitute: 11;
+		override: 11;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
+	property {
+		substitute: 12;
+		override: 12;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
+	property {
+		substitute: 13;
+		override: 13;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
+	property {
+		substitute: 14;
+		override: 14;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
+	property {
+		substitute: 15;
+		override: 15;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Sawmill */
+switch (FEAT_INDUSTRIES, SELF, loc_check_sawmill, IsBeingFunded() || (IsNearTown() && TownHasSecondaryPopulation() && NoNearbyCompetitors(industry_sawmill, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_sawmill,
+	[PASS: 1; WOOD: 1;],	// Consume
+	[WDPR: 1;],				// Produce
+	1 						// Run callback again
+	)
+
+produce (produce_sawmill_stockpile,
+	[WOOD: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+/* We don't have both Workers and Wood. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_idle, incoming_cargo_waiting("WOOD") > 4096) {
+	1: produce_sawmill_stockpile;
+	switch_produce_idle;
+}
+
+/* Check if we have both Workers and Wood */
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WOOD") > 0)) {
+	1: produce_sawmill;
+	switch_produce_sawmill_idle;
+}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_sawmill, 19) {
+	property {
+		substitute:	INDUSTRYTYPE_SAWMILL;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+			accept_cargo("WOOD", produce_cargo("WDPR", 0.5)),
+		];
+		name: string(STR_NAME_SAWMILL);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_sawmill;
+		produce_cargo_arrival: switch_produce_sawmill;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}

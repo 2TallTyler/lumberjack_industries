@@ -1,0 +1,89 @@
+/* *** Begin Furniture Factory *** */
+
+item (FEAT_INDUSTRYTILES, ind_tile_furniture_factory_1) {
+	property {
+		substitute: 39;
+		override: 39;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_furniture_factory_2) {
+	property {
+		substitute: 40;
+		override: 40;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_furniture_factory_3) {
+	property {
+		substitute: 41;
+		override: 41;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_furniture_factory_4) {
+	property {
+		substitute: 42;
+		override: 42;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Furniture Factory */
+switch (FEAT_INDUSTRIES, SELF, loc_check_furniture_factory, IsBeingFunded() || (IsNearTown() && TownHasSecondaryPopulation() && NoNearbyCompetitors(industry_furniture_factory, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_furniture_factory,
+	[PASS: 1; WDPR: 1;],	// Consume
+	[GOOD: 1;],				// Produce
+	1 						// Run callback again
+	)
+
+produce (produce_furniture_factory_stockpile,
+	[WDPR: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+/* We don't have both Workers and Lumber. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WDPR") > 4096) {
+	1: produce_furniture_factory_stockpile;
+	switch_produce_idle;
+}
+
+/* Check if we have both Workers and Lumber */
+
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WDPR") > 0)) {
+	1: produce_furniture_factory;
+	switch_produce_furniture_factory_idle;
+}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
+	property {
+		substitute:	INDUSTRYTYPE_TEMPERATE_FACTORY;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("PASS"),
+			accept_cargo("WDPR", produce_cargo("GOOD", 0.5)),
+		];
+		name: string(STR_NAME_FURNITURE_FACTORY);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FURNITURE_FACTORY));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+		location_check: loc_check_furniture_factory;
+		produce_cargo_arrival: switch_produce_furniture_factory;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}

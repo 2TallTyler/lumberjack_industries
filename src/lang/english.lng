@@ -34,6 +34,8 @@ STR_NAME_OIL_REFINERY               :Oil Refinery
 STR_NAME_KAOLIN_MINE                :Kaolin Mine
 STR_NAME_COAL_MINE                  :Coal Mine
 STR_NAME_POWER_PLANT                :Power Plant
+STR_NAME_FURNITURE_FACTORY          :Furniture Factory
+STR_NAME_SAWMILL                    :Sawmill
 
 STR_CARGO_NAME_WORKERS              :Workers
 STR_CARGO_SINGULAR_WORKERS          :Worker

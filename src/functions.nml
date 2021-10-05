@@ -49,7 +49,7 @@ switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > r
  * @param The required population, set by NewGRF Parameters
  * @return 1 if the town has the required population, else 0.
  */
-switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (param_secondary_pop + (param_secondary_pop * (industry_town_count(industry_bakery) + industry_town_count(industry_box_factory) + industry_town_count(industry_oil_refinery) + industry_town_count(industry_paper_mill))))) {return;}
+switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (param_secondary_pop + (param_secondary_pop * (industry_town_count(industry_bakery) + industry_town_count(industry_box_factory) + industry_town_count(industry_oil_refinery) + industry_town_count(industry_paper_mill) + industry_town_count(industry_furniture_factory) + industry_town_count(industry_sawmill))))) {return;}
 
 /**
  * Check if there are any industries of a given type within a given distance.
