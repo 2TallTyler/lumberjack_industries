@@ -72,7 +72,7 @@ item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
 		spec_flags: bitmask(IND_FLAG_BUILT_ON_WATER, IND_FLAG_AI_CREATES_AIR_AND_SHIP_ROUTES);
 		name: string(STR_NAME_OIL_RIG);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_RIG));
-		prob_map_gen: 1;
+		prob_map_gen: 4;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
 	}
