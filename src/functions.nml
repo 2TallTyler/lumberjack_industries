@@ -1,5 +1,7 @@
 /* Begin Functions */
 
+/* LOCATION CHECKS */
+
 /**
  * Bypass location check requirements if the industry is being funded or if we're in Scenario Editor.
  * @return 1 if the industry is being funded or we're in Scenario Editor, else 0 (the industry is being generated during map generation or during a game).
@@ -94,6 +96,55 @@ switch (FEAT_INDUSTRIES, SELF, IsNearMapEdge,
 	(GetTileY() < 32) ||
 	((map_y_edge - GetTileY()) < 32)
 ) {return;}
+
+/* CARGO CALLBACKS */
+
+/**
+ * Get the default station rating based on the time since cargo was last picked up. Unchanged from vanilla OpenTTD mechanics.
+ * @return The rating calculation.
+ */
+switch (FEAT_CARGOS, SELF, GetRatingFromTime, getbits(extra_callback_info2, 0, 8)) {
+	0..3: return 130;
+	4..6: return 95;
+	7..12: return 50;
+	13..21: return 25;
+	return 0;
+}
+
+/**
+ * Get the default station rating based on the amount of cargo waiting. Unchanged from vanilla OpenTTD mechanics.
+ * @return The rating calculation.
+ */
+switch (FEAT_CARGOS, SELF, GetRatingFromCargo, getbits(extra_callback_info2, 8, 16)) {
+	0..100: return 40;
+	101..300: return 30;
+	301..600: return 10;
+	601..1000: return 0;
+	1001..1500: return -35;
+	return -90;
+}
+
+/**
+ * Get the default station rating based on the speed of the last vehicle to pick up cargo. Unchanged from vanilla OpenTTD mechanics.
+ * @return The rating calculation.
+ */
+switch (FEAT_CARGOS, SELF, GetRatingFromSpeed, getbits(extra_callback_info2, 24, 8)) {
+	0..85: return 0;
+	86..254: return (getbits(extra_callback_info2, 24, 8) - 85) / 4;
+	return 42; // Max speed units is 255: (255 - 85) / 4 = 42
+}
+
+/**
+ * Nerf station ratings if there is too much cargo stored there.
+ * @param maximum The maximum storage allowed before nerfing the station rating for a given cargo.
+ * @return 0 to nerf the rating if too much cargo is stored, else return the default rating calculation.
+ */
+switch (FEAT_CARGOS, SELF, MaxStationStorage, maximum, (getbits(extra_callback_info2, 8, 16) > maximum)) {
+	1: return 0;
+	return GetRatingFromTime() + GetRatingFromCargo() + GetRatingFromSpeed();
+}
+
+/* PRODUCTION BLOCKS */
 
 /* Empty production block. */
 produce (produce_none, [], [])

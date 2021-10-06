@@ -178,6 +178,9 @@ item (FEAT_CARGOS, cargo_wheat, 0x06) {
 		price_factor:				114;
 		capacity_multiplier:		1;		
 	}
+	graphics {
+		station_rating:				MaxStationStorage(300);
+	}
 }
 
 // Original ID

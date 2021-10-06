@@ -6,7 +6,7 @@
 newgrf_name = "lumberjack_industries"
 
 # Files which should be first, in order (header, cargotable, etc)
-header_stuff = ["header", "cargos", "functions"]
+header_stuff = ["header", "functions", "cargos"]
 
 # Files to place in alphabetical order below
 unordered_stuff = ["logging_camp", "paper_mill", "farm", "bakery", "box_factory", "oil_rig", "oil_refinery", "kaolin_mine","coal_mine", "power_plant", "furniture_factory", "sawmill"]
