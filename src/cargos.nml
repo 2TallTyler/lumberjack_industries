@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, GOOD, WOOD, PAPR, MNSP, WDPR, RFPR, GRAI, FOOD, FERT, KAOL, FUEL
+	PASS, COAL, MAIL, OIL_, RFPR, GOOD, GRAI, WOOD, WDPR, PAPR, MNSP, FERT, FOOD, KAOL, FUEL
 }
 
 // Original ID
