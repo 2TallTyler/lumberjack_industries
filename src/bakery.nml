@@ -106,11 +106,13 @@ item (FEAT_INDUSTRIES, industry_bakery, 13) {
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 51;
 	}
 	graphics {
 		location_check: loc_check_bakery;
 		produce_cargo_arrival: switch_produce_bakery;
 		extra_text_industry: string(STR_BAKERY_HELPTEXT);
+		colour: COLOUR_YELLOW;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

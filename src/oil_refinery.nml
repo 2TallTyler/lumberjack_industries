@@ -96,10 +96,12 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 4) {
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 187;
 	}
 	graphics {
 		location_check: loc_check_oil_refinery;
 		produce_cargo_arrival: switch_produce_oil_refinery;
+		colour: COLOUR_ORANGE;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

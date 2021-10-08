@@ -78,10 +78,12 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 140;
 	}
 	graphics {
 		location_check: loc_check_furniture_factory;
 		produce_cargo_arrival: switch_produce_furniture_factory;
+		colour: COLOUR_PURPLE;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

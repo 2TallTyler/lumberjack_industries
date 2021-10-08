@@ -103,6 +103,7 @@ item (FEAT_INDUSTRIES, industry_farm, 9) {
 		prob_map_gen: 4;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 65;
 	}
 	graphics {
 		control_special: switch_farm_production_check_1;

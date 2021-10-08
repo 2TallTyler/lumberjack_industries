@@ -78,10 +78,12 @@ item (FEAT_INDUSTRIES, industry_box_factory, 7) {
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 95;
 	}
 	graphics {
 		location_check: loc_check_box_factory;
 		produce_cargo_arrival: switch_produce_box_factory;
+		colour: COLOUR_DARK_GREEN;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

@@ -75,6 +75,7 @@ item (FEAT_INDUSTRIES, industry_power_plant, 17) {
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
+		map_colour: 152;
 	}
 	graphics {
         location_check: loc_check_power_plant;
