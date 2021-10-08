@@ -1,5 +1,21 @@
 /* Begin Logging Camp */
 
+spritelayout sprlay_logging_camp_blank {
+	ground {
+		sprite: 3924;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_0) {
+	property {
+		substitute: 11;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		default: sprlay_logging_camp_blank;
+	}
+}
+
 item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_1) {
 	property {
 		substitute: 11;
@@ -40,6 +56,12 @@ item (FEAT_INDUSTRYTILES, ind_tile_logging_camp_5) {
 	}
 }
 
+tilelayout industry_layout_logging_camp_1 {
+	0,0: ind_tile_logging_camp_1;    0,1: ind_tile_logging_camp_0;
+	1,0: ind_tile_logging_camp_0;    1,1: ind_tile_logging_camp_5;
+
+}
+
 /* Boosted production if Mail is supplied */
 produce (produce_logging_camp_boosted,
 	[MAIL: 3;],     // Consume
@@ -66,6 +88,9 @@ item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 		spec_flags:	bitmask(IND_FLAG_CUT_TREES);
 		name: string(STR_NAME_LOGGING_CAMP);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LOGGING_CAMP));
+		layouts: [
+			industry_layout_logging_camp_1
+		];
 		prob_map_gen: 0;
 		prob_in_game: 0;
 		fund_cost_multiplier: 4;
