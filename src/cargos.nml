@@ -25,7 +25,7 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 		single_penalty_length:		22;
 		station_list_colour:		152;
 		cargo_payment_list_colour:	152;
-		price_factor:				105;
+		price_factor:				110; // original: 105
 		capacity_multiplier:		4;
 	}
 }
@@ -50,7 +50,7 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 		single_penalty_length:		255;
 		station_list_colour:		6;
 		cargo_payment_list_colour:	6;
-		price_factor:				56;
+		price_factor:				70; // original: 56
 		capacity_multiplier:		1;		
 	}
 }
@@ -75,7 +75,7 @@ item (FEAT_CARGOS, cargo_mail, 0x02) {
 		single_penalty_length:		24;
 		station_list_colour:		15;
 		cargo_payment_list_colour:	15;
-		price_factor:				166;
+		price_factor:				165; // original: 166
 		capacity_multiplier:		2;		
 	}
 }
@@ -100,7 +100,7 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 		single_penalty_length:		255;
 		station_list_colour:		185;
 		cargo_payment_list_colour:	185;
-		price_factor:				101;
+		price_factor:				50; // original: 101
 		capacity_multiplier:		1;		
 	}
 }
@@ -125,7 +125,7 @@ item (FEAT_CARGOS, cargo_chemicals, 0x04) {
 		single_penalty_length:		255;
 		station_list_colour:		46;
 		cargo_payment_list_colour:	46;
-		price_factor:				126;
+		price_factor:				95; // original: 126
 		capacity_multiplier:		1;		
 	}
 }
@@ -150,7 +150,7 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 		single_penalty_length:		64;
 		station_list_colour:		141;
 		cargo_payment_list_colour:	141;
-		price_factor:				144;
+		price_factor:				170; // original: 144
 		capacity_multiplier:		2;		
 	}
 }
@@ -175,7 +175,7 @@ item (FEAT_CARGOS, cargo_wheat, 0x06) {
 		single_penalty_length:		40;
 		station_list_colour:		65;
 		cargo_payment_list_colour:	65;
-		price_factor:				114;
+		price_factor:				55; // original: 115
 		capacity_multiplier:		1;		
 	}
 	graphics {
@@ -203,7 +203,7 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 		single_penalty_length:		255;
 		station_list_colour:		85;
 		cargo_payment_list_colour:	85;
-		price_factor:				50;
+		price_factor:				45; // original: 50
 		capacity_multiplier:		1;		
 	}
 }
@@ -227,7 +227,7 @@ item (FEAT_CARGOS, cargo_lumber, 0x08) {
 		single_penalty_length:		255;
 		station_list_colour:		63;
 		cargo_payment_list_colour:	63;
-		price_factor:				93;
+		price_factor:				80; // original: 93
 		capacity_multiplier:		1;		
 	}
 }
@@ -252,7 +252,7 @@ item (FEAT_CARGOS, cargo_paper, 0x09) {
 		single_penalty_length:		255;
 		station_list_colour:		14;
 		cargo_payment_list_colour:	14;
-		price_factor:				110;
+		price_factor:				85; // original: 110
 		capacity_multiplier:		1;		
 	}
 }
@@ -276,7 +276,7 @@ item (FEAT_CARGOS, cargo_packaging, 0x0A) {
 		single_penalty_length:		120;
 		station_list_colour:		95;
 		cargo_payment_list_colour:	95;
-		price_factor:				131;
+		price_factor:				105; // original: 131
 		capacity_multiplier:		1;		
 	}
 }
@@ -298,7 +298,7 @@ item (FEAT_CARGOS, cargo_fertilizer, 0x0B) {
 		items_of_cargo:				string(STR_CARGO_QUANTITY_FERTILIZER);
 		penalty_lowerbound:			22;
 		single_penalty_length:		44;
-		price_factor:				123;
+		price_factor:				100; // original: 123
 		capacity_multiplier:		1;
 		station_list_colour:		48;
 		cargo_payment_list_colour:	48;
@@ -325,7 +325,7 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 		single_penalty_length:		24;
 		station_list_colour:		51;
 		cargo_payment_list_colour:	51;
-		price_factor:				158;
+		price_factor:				150; // original: 158
 		capacity_multiplier:		1;		
 	}
 }
@@ -347,7 +347,7 @@ item (FEAT_CARGOS, cargo_kaolin, 0x0D) {
 		items_of_cargo:				string(STR_CARGO_QUANTITY_KAOLIN);
 		penalty_lowerbound:			30;
 		single_penalty_length:		255;
-		price_factor:				100;
+		price_factor:				40; // original: 100
 		capacity_multiplier:		1;
 		station_list_colour:		148;
 		cargo_payment_list_colour:	148;
@@ -371,7 +371,7 @@ item (FEAT_CARGOS, cargo_fuel, 0x0E) {
 		items_of_cargo:				string(STR_CARGO_QUANTITY_FUEL);
 		penalty_lowerbound:			20;
 		single_penalty_length:		128;
-		price_factor:				116;
+		price_factor:				90; // original: 116
 		capacity_multiplier:		1;
 		station_list_colour:		187;
 		cargo_payment_list_colour:	187;
