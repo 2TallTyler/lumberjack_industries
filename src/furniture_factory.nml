@@ -71,7 +71,8 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
 			accept_cargo("PASS"),
-			accept_cargo("WDPR", produce_cargo("GOOD", 0.5)),
+			accept_cargo("WDPR"),
+			produce_cargo("GOOD", 0),
 		];
 		name: string(STR_NAME_FURNITURE_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FURNITURE_FACTORY));
