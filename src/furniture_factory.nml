@@ -38,28 +38,53 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_furniture_factory, IsBeingFunded() || (
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
-produce (produce_furniture_factory,
-	[PASS: 1; WDPR: 1;],	// Consume
-	[GOOD: 1;],				// Produce
-	1 						// Run callback again
+produce (produce_furniture_factory_efficient,
+	[PASS: 2; WOOD: 2; COAT: 1;],   // Consume
+	[GOOD: 2;],                     // Produce
+	1                               // Run callback again
 	)
 
-produce (produce_furniture_factory_stockpile,
-	[WDPR: 1;],               // Consume
+produce (produce_furniture_factory_basic,
+	[PASS: 2; WOOD: 2;],            // Consume
+	[GOOD: 1;],                     // Produce
+	1                               // Run callback again
+	)
+
+/* Is production boosted by Varnish? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_varnish, incoming_cargo_waiting("COAT") > 0) {
+	1: produce_furniture_factory_efficient;
+	produce_furniture_factory_basic;
+}
+
+/* Consume extra Varnish */
+produce (produce_furniture_factory_varnish_stockpile,
+	[WOOD: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
 
-/* We don't have both Workers and Lumber. Which do we consume? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WDPR") > 4096) {
-	1: produce_furniture_factory_stockpile;
+/* Consume extra Wood */
+produce (produce_furniture_factory_wood_stockpile,
+	[WOOD: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+/* Should we consume extra Varnish? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle_2, incoming_cargo_waiting("COAT") > 4096) {
+	1: produce_furniture_factory_varnish_stockpile;
 	switch_produce_idle;
 }
 
-/* Check if we have both Workers and Lumber */
+/* We don't have both Workers and Wood. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WOOD") > 4096) {
+	1: produce_furniture_factory_wood_stockpile;
+	switch_produce_furniture_factory_idle_2;
+}
 
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WDPR") > 0)) {
-	1: produce_furniture_factory;
+/* Check if we have both Workers and Wood */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") >= 2 && incoming_cargo_waiting("WOOD") >= 4)) {
+	1: switch_produce_furniture_factory_varnish;
 	switch_produce_furniture_factory_idle;
 }
 
@@ -72,6 +97,7 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 		cargo_types: [
 			accept_cargo("PASS"),
 			accept_cargo("WDPR"),
+			accept_cargo("COAT"),
 			produce_cargo("GOOD", 0),
 		];
 		name: string(STR_NAME_FURNITURE_FACTORY);
@@ -84,6 +110,7 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 	graphics {
 		location_check: loc_check_furniture_factory;
 		produce_cargo_arrival: switch_produce_furniture_factory;
+		extra_text_industry: string(STR_FURNITURE_FACTORY_HELPTEXT);
 		colour: COLOUR_PURPLE;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

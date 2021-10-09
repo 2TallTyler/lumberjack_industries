@@ -22,6 +22,7 @@ STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver
 STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
+STR_FURNITURE_FACTORY_HELPTEXT      :Production efficiency per unit of Lumber:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Varnish
 STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit of Wood:{} {WHITE}Quarter{BLACK}: 1 Worker{} {WHITE}Half{BLACK}: 1 Worker + 0.5 Kaolin or 0.5 Chemicals{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Kaolin + 0.5 Chemicals
 
 STR_NAME_LOGGING_CAMP               :Logging Camp
@@ -69,3 +70,7 @@ STR_CARGO_QUANTITY_KAOLIN           :{WEIGHT} of kaolin
 STR_CARGO_NAME_FUEL                 :Fuel
 STR_CARGO_ABBREV_FUEL               :{TINYFONT}FU
 STR_CARGO_QUANTITY_FUEL             :{WEIGHT} of fuel
+
+STR_CARGO_NAME_VARNISH              :Varnish
+STR_CARGO_ABBREV_VARNISH            :{TINYFONT}VR
+STR_CARGO_QUANTITY_VARNISH          :{WEIGHT} of varnish

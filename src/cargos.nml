@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, RFPR, GOOD, GRAI, WOOD, WDPR, PAPR, MNSP, FERT, FOOD, KAOL, FUEL
+	PASS, COAL, MAIL, OIL_, RFPR, GOOD, GRAI, WOOD, WDPR, PAPR, MNSP, FERT, FOOD, KAOL, FUEL, COAT
 }
 
 // Original ID
@@ -375,5 +375,29 @@ item (FEAT_CARGOS, cargo_fuel, 14) {
 		capacity_multiplier:		1;
 		station_list_colour:		187;
 		cargo_payment_list_colour:	187;
+	}
+}
+
+item (FEAT_CARGOS, cargo_varnish, 15) {
+	property {
+		number:						15;
+		sprite:						4314;
+		type_name:					string(STR_CARGO_NAME_VARNISH);
+		unit_name:					string(STR_CARGO_NAME_VARNISH);
+		type_abbreviation:			string(STR_CARGO_ABBREV_VARNISH);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_LIQUID, CC_PIECE_GOODS);
+		cargo_label:				"COAT";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_VARNISH);
+		penalty_lowerbound:			20;
+		single_penalty_length:		255;
+		station_list_colour:		44;
+		cargo_payment_list_colour:	44;
+		price_factor:				75;
+		capacity_multiplier:		1;
 	}
 }
