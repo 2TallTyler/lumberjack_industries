@@ -8,7 +8,7 @@ cargotable {
 // Original ID
 item (FEAT_CARGOS, cargo_passengers, 0) {
 	property {
-		number:						0x00;
+		number:						0;
 		sprite:						4297;
 		type_name:					string(STR_CARGO_NAME_WORKERS);
 		unit_name:					string(STR_CARGO_SINGULAR_WORKERS);
@@ -31,9 +31,9 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_coal, 0x01) {
+item (FEAT_CARGOS, cargo_coal, 1) {
 	property {
-		number:						0x01;
+		number:						1;
 		sprite:						4298;
 		type_name:					TTD_STR_CARGO_PLURAL_COAL;
 		unit_name:					TTD_STR_CARGO_SINGULAR_COAL;
@@ -56,9 +56,9 @@ item (FEAT_CARGOS, cargo_coal, 0x01) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_mail, 0x02) {
+item (FEAT_CARGOS, cargo_mail, 2) {
 	property {
-		number:						0x02;
+		number:						2;
 		sprite:						4299;
 		type_name:					TTD_STR_CARGO_PLURAL_MAIL;
 		unit_name:					TTD_STR_CARGO_SINGULAR_MAIL;
@@ -81,9 +81,9 @@ item (FEAT_CARGOS, cargo_mail, 0x02) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_oil, 0x03) {
+item (FEAT_CARGOS, cargo_oil, 3) {
 	property {
-		number:						0x03;
+		number:						3;
 		sprite:						4300;
 		type_name:					string(STR_CARGO_NAME_OIL);
 		unit_name:					string(STR_CARGO_NAME_OIL);
@@ -106,9 +106,9 @@ item (FEAT_CARGOS, cargo_oil, 0x03) {
 }
 
 // Livestock ID 0x04
-item (FEAT_CARGOS, cargo_chemicals, 0x04) {
+item (FEAT_CARGOS, cargo_chemicals, 4) {
 	property {
-		number:						0x04;
+		number:						4;
 		sprite:						4314;
 		type_name:					string(STR_CARGO_NAME_CHEMICALS);
 		unit_name:					string(STR_CARGO_NAME_CHEMICALS);
@@ -131,9 +131,9 @@ item (FEAT_CARGOS, cargo_chemicals, 0x04) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_goods, 0x05) {
+item (FEAT_CARGOS, cargo_goods, 5) {
 	property {
-		number:						0x05;
+		number:						5;
 		sprite:						4302;
 		type_name:					TTD_STR_CARGO_PLURAL_GOODS;
 		unit_name:					TTD_STR_CARGO_SINGULAR_GOODS;
@@ -156,9 +156,9 @@ item (FEAT_CARGOS, cargo_goods, 0x05) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_wheat, 0x06) {
+item (FEAT_CARGOS, cargo_wheat, 6) {
 	property {
-		number:						0x06;
+		number:						6;
 		sprite:						4303;
 		type_name:					TTD_STR_CARGO_PLURAL_WHEAT;
 		unit_name:					TTD_STR_CARGO_SINGULAR_WHEAT;
@@ -184,9 +184,9 @@ item (FEAT_CARGOS, cargo_wheat, 0x06) {
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_wood, 0x07) {
+item (FEAT_CARGOS, cargo_wood, 7) {
 	property {
-		number:						0x07;
+		number:						7;
 		sprite:						4304;
 		type_name:					TTD_STR_CARGO_PLURAL_WOOD;
 		unit_name:					TTD_STR_CARGO_SINGULAR_WOOD;
@@ -208,9 +208,9 @@ item (FEAT_CARGOS, cargo_wood, 0x07) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_lumber, 0x08) {
+item (FEAT_CARGOS, cargo_lumber, 8) {
 	property {
-		number:						0x08;
+		number:						8;
 		sprite:						4307;
 		type_name:					string(STR_CARGO_NAME_LUMBER);
 		unit_name:					string(STR_CARGO_NAME_LUMBER);
@@ -233,9 +233,9 @@ item (FEAT_CARGOS, cargo_lumber, 0x08) {
 }
 
 // Use Steel ID
-item (FEAT_CARGOS, cargo_paper, 0x09) {
+item (FEAT_CARGOS, cargo_paper, 9) {
 	property {
-		number:						0x09;
+		number:						9;
 		sprite:						4313;
 		type_name:					TTD_STR_CARGO_PLURAL_PAPER;
 		unit_name:					TTD_STR_CARGO_SINGULAR_PAPER;
@@ -257,9 +257,9 @@ item (FEAT_CARGOS, cargo_paper, 0x09) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_packaging, 0x0A) {
+item (FEAT_CARGOS, cargo_packaging, 10) {
 	property {
-		number:						0x0A;
+		number:						10;
 		sprite:						4313;
 		type_name:					string(STR_CARGO_NAME_PACKAGING);
 		unit_name:					string(STR_CARGO_NAME_PACKAGING);
@@ -281,9 +281,9 @@ item (FEAT_CARGOS, cargo_packaging, 0x0A) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_fertilizer, 0x0B) {
+item (FEAT_CARGOS, cargo_fertilizer, 11) {
 	property {
-		number:						0x0B;
+		number:						11;
 		sprite:						4320;
 		type_name:					string(STR_CARGO_NAME_FERTILIZER);
 		unit_name:					string(STR_CARGO_NAME_FERTILIZER);
@@ -306,9 +306,9 @@ item (FEAT_CARGOS, cargo_fertilizer, 0x0B) {
 }
 
 // Original ID, required for compatibility with older NewGRF house sets which hard-code cargo acceptance to cargo IDs rather than "FOOD"
-item (FEAT_CARGOS, cargo_food, 0x0C) {
+item (FEAT_CARGOS, cargo_food, 12) {
 	property {
-		number:						0x0C;
+		number:						12;
 		sprite:						4312;
 		type_name:					TTD_STR_CARGO_PLURAL_FOOD;
 		unit_name:					TTD_STR_CARGO_SINGULAR_FOOD;
@@ -330,9 +330,9 @@ item (FEAT_CARGOS, cargo_food, 0x0C) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_kaolin, 0x0D) {
+item (FEAT_CARGOS, cargo_kaolin, 13) {
 	property {
-		number:						0x0D;
+		number:						13;
 		sprite:						4320;
 		type_name:					string(STR_CARGO_NAME_KAOLIN);
 		unit_name:					string(STR_CARGO_NAME_KAOLIN);
@@ -354,9 +354,9 @@ item (FEAT_CARGOS, cargo_kaolin, 0x0D) {
 	}
 }
 
-item (FEAT_CARGOS, cargo_fuel, 0x0E) {
+item (FEAT_CARGOS, cargo_fuel, 14) {
 	property {
-		number:						0x0E;
+		number:						14;
 		sprite:						4300;
 		type_name:					string(STR_CARGO_NAME_FUEL);
 		unit_name:					string(STR_CARGO_NAME_FUEL);
