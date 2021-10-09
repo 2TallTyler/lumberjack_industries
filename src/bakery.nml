@@ -36,13 +36,13 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_4) {
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_bakery_efficient,
-	[PASS: 2; GRAI: 4; MNSP: 2;],   // Consume
-	[FOOD: 4;],                     // Produce
+	[PASS: 2; GRAI: 2; MNSP: 1;],   // Consume
+	[FOOD: 2;],                     // Produce
 	1                               // Run callback again
 	)
 
 produce (produce_bakery_basic,
-	[PASS: 2; GRAI: 4; MNSP: 2;],   // Consume
+	[PASS: 2; GRAI: 2;],            // Consume
 	[FOOD: 2;],                     // Produce
 	1                               // Run callback again
 	)
