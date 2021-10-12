@@ -58,14 +58,13 @@ produce (produce_sawmill_stockpile,
 	1                         // Run callback again
 	)
 
-/* We don't have both Workers and Wood. Which do we consume? */
+/* We don't have both Workers and Logs. Which do we consume? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_idle, incoming_cargo_waiting("WOOD") > 4096) {
 	1: produce_sawmill_stockpile;
 	switch_produce_idle;
 }
 
-/* Check if we have both Workers and Wood */
-
+/* Check if we have both Workers and Logs */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WOOD") > 0)) {
 	1: produce_sawmill;
 	switch_produce_sawmill_idle;
