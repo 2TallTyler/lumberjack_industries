@@ -39,13 +39,13 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_furniture_factory, IsBeingFunded() || (
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_furniture_factory_efficient,
-	[PASS: 2; WOOD: 2; COAT: 1;],   // Consume
+	[PASS: 2; WDPR: 2; COAT: 1;],   // Consume
 	[GOOD: 2;],                     // Produce
 	1                               // Run callback again
 	)
 
 produce (produce_furniture_factory_basic,
-	[PASS: 2; WOOD: 2;],            // Consume
+	[PASS: 2; WDPR: 2;],            // Consume
 	[GOOD: 1;],                     // Produce
 	1                               // Run callback again
 	)
@@ -58,14 +58,14 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_varnish, incomin
 
 /* Consume extra Varnish */
 produce (produce_furniture_factory_varnish_stockpile,
-	[WOOD: 1;],               // Consume
+	[WDPR: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
 
-/* Consume extra Wood */
+/* Consume extra Lumber */
 produce (produce_furniture_factory_wood_stockpile,
-	[WOOD: 1;],               // Consume
+	[WDPR: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
@@ -76,14 +76,14 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle_2, incoming
 	switch_produce_idle;
 }
 
-/* We don't have both Workers and Wood. Which do we consume? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WOOD") > 4096) {
+/* We don't have both Workers and Lumber. Which do we consume? */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WDPR") > 4096) {
 	1: produce_furniture_factory_wood_stockpile;
 	switch_produce_furniture_factory_idle_2;
 }
 
-/* Check if we have both Workers and Wood */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") >= 2 && incoming_cargo_waiting("WOOD") >= 4)) {
+/* Check if we have both Workers and Lumber */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") >= 2 && incoming_cargo_waiting("WDPR") >= 4)) {
 	1: switch_produce_furniture_factory_varnish;
 	switch_produce_furniture_factory_idle;
 }
