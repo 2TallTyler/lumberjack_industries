@@ -42,9 +42,9 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_oil_rig,
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
-/* Boosted production if Mail is supplied */
+/* Boosted production if Food is supplied */
 produce (produce_oil_rig_boosted,
-	[MAIL: 3;],		// Consume
+	[FOOD: 3;],		// Consume
 	[OIL_: 64;],	// Produce
 	0 				// Don't run callback again
 	)
@@ -56,8 +56,8 @@ produce (produce_oil_rig,
 	0 				// Don't run callback again
 	)
 
-/* Check for Mail for normal or boosted production */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("MAIL") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
+/* Check for Food for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("FOOD") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
 
 /* END PRODUCTION */
 
@@ -66,7 +66,7 @@ item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
 		substitute: INDUSTRYTYPE_OIL_RIG;
 		life_type: IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types: [
-			accept_cargo("MAIL"),
+			accept_cargo("FOOD"),
 			produce_cargo("OIL_", 0),
             ];
 		spec_flags: bitmask(IND_FLAG_BUILT_ON_WATER, IND_FLAG_AI_CREATES_AIR_AND_SHIP_ROUTES);

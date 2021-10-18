@@ -62,17 +62,17 @@ tilelayout industry_layout_logging_camp_1 {
 
 }
 
-/* Boosted production if Mail is supplied */
+/* Boosted production if Food is supplied */
 produce (produce_logging_camp_boosted,
-	[MAIL: 3;],     // Consume
+	[FOOD: 3;],     // Consume
 	[],             // Produce (none, since cargo is produced by special flag behavior)
 	0               // Don't run callback again
 	)
 
-/* Check for Mail for normal or boosted production */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_logging_camp, incoming_cargo_waiting("MAIL") >= 3) {1: produce_logging_camp_boosted; produce_none;}
+/* Check for Food for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_logging_camp, incoming_cargo_waiting("FOOD") >= 3) {1: produce_logging_camp_boosted; produce_none;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_2, (incoming_cargo_waiting("MAIL") >= 3 || current_day_of_month % 2 == 0)) {return;}
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_2, (incoming_cargo_waiting("FOOD") >= 3 || current_day_of_month % 2 == 0)) {return;}
 
 /* Only cut trees December through March. */
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11) && switch_logging_camp_production_check_2()) {return;}
@@ -82,7 +82,7 @@ item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 		substitute:	INDUSTRYTYPE_SAWMILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
-			accept_cargo("MAIL"),
+			accept_cargo("FOOD"),
 			produce_cargo("WOOD", 0),
 		];
 		spec_flags:	bitmask(IND_FLAG_CUT_TREES);

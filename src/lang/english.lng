@@ -16,9 +16,9 @@ STR_PARAM_SECONDARY_POP_DESC        :The population required to support each sec
 STR_TOWN                            :{STRING}
 STR_STATION                         :{STRING} {STRING}
 
-STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
+STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Food per month.
 STR_FARM_HELPTEXT                   :Only produces September through November. Load into vehicles promptly to avoid spoilage.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
-STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Mail per month.
+STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Food per month.
 STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
