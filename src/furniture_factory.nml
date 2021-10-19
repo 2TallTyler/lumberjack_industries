@@ -58,7 +58,7 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_varnish, incomin
 
 /* Consume extra Varnish */
 produce (produce_furniture_factory_varnish_stockpile,
-	[WDPR: 1;],               // Consume
+	[COAT: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
