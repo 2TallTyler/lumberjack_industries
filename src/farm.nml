@@ -84,6 +84,15 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_2, incoming_cargo_waiting("FE
 /* Even not during harvest months, consume Fertilizer*/
 switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_idle, incoming_cargo_waiting("FERT") >= 3) {1: produce_farm_idle; produce_none;}
 
+/* Don't build up too large a stockpile */
+produce (produce_farm_stockpile,
+	[FERT: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+	
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_farm, incoming_cargo_waiting("FERT") > 4096) {1: produce_farm_stockpile; produce_none;}
+
 /* Farms only harvest September through November. */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_farm_1, current_month >= 8 && current_month < 11) {1: switch_produce_farm_2; switch_produce_farm_idle;}
 
@@ -109,6 +118,7 @@ item (FEAT_INDUSTRIES, industry_farm, 9) {
 		control_special: switch_farm_production_check_1;
         location_check: loc_check_farm;
         produce_256_ticks: switch_produce_farm_1;
+		produce_cargo_arrival: switch_stockpile_farm;
 		extra_text_industry: string(STR_FARM_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

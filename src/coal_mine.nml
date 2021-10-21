@@ -80,6 +80,15 @@ produce (produce_coal_mine,
 /* Check for Fuel for normal or boosted production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_coal_mine_1, incoming_cargo_waiting("FUEL") >= 3) {1: produce_coal_mine_boosted; produce_coal_mine;}
 
+/* Don't build up too large a stockpile */
+produce (produce_coal_mine_stockpile,
+	[FUEL: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+	
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_coal_mine, incoming_cargo_waiting("FUEL") > 4096) {1: produce_coal_mine_stockpile; produce_none;}
+
 /* END PRODUCTION */
 
 item (FEAT_INDUSTRIES, industry_coal_mine, 16) {
@@ -99,6 +108,7 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 16) {
 	graphics {
         location_check: loc_check_coal_mine;
         produce_256_ticks: switch_produce_coal_mine_1;
+		produce_cargo_arrival: switch_stockpile_coal_mine;
 		extra_text_industry: string(STR_COAL_MINE_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

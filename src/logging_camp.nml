@@ -72,9 +72,17 @@ produce (produce_logging_camp_boosted,
 /* Check for Food for normal or boosted production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_logging_camp, incoming_cargo_waiting("FOOD") >= 3) {1: produce_logging_camp_boosted; produce_none;}
 
-switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_2, (incoming_cargo_waiting("FOOD") >= 3 || current_day_of_month % 2 == 0)) {return;}
+/* Don't build up too large a stockpile */
+produce (produce_logging_camp_stockpile,
+	[FOOD: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_logging_camp, incoming_cargo_waiting("FOOD") > 4096) {1: produce_logging_camp_stockpile; produce_none;}
 
 /* Only cut trees December through March. */
+switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_2, (incoming_cargo_waiting("FOOD") >= 3 || current_day_of_month % 2 == 0)) {return;}
 switch (FEAT_INDUSTRIES, SELF, switch_logging_camp_production_check_1, (current_month <= 2 || current_month == 11) && switch_logging_camp_production_check_2()) {return;}
 
 item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
@@ -99,6 +107,7 @@ item (FEAT_INDUSTRIES, industry_logging_camp, 25) {
 	graphics {
 		control_special: switch_logging_camp_production_check_1;
 		produce_256_ticks: switch_produce_logging_camp;
+		produce_cargo_arrival: switch_stockpile_logging_camp;
 		extra_text_industry: string(STR_LOGGING_CAMP_HELPTEXT);
 	}
 }

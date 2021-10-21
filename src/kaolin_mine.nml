@@ -160,6 +160,15 @@ produce (produce_kaolin_mine,
 /* Check for Fuel for normal or boosted production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_kaolin_mine_1, incoming_cargo_waiting("FUEL") >= 3) {1: produce_kaolin_mine_boosted; produce_kaolin_mine;}
 
+/* Don't build up too large a stockpile */
+produce (produce_kaolin_mine_stockpile,
+	[FUEL: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+	
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_kaolin_mine, incoming_cargo_waiting("FUEL") > 4096) {1: produce_kaolin_mine_stockpile; produce_none;}
+
 /* END PRODUCTION */
 
 item (FEAT_INDUSTRIES, industry_kaolin_mine, 15) {
@@ -180,6 +189,7 @@ item (FEAT_INDUSTRIES, industry_kaolin_mine, 15) {
 	graphics {
         location_check: loc_check_kaolin_mine;
         produce_256_ticks: switch_produce_kaolin_mine_1;
+		produce_cargo_arrival: switch_stockpile_kaolin_mine;
 		extra_text_industry: string(STR_KAOLIN_MINE_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production

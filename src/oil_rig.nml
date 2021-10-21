@@ -59,6 +59,15 @@ produce (produce_oil_rig,
 /* Check for Food for normal or boosted production */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("FOOD") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
 
+/* Don't build up too large a stockpile */
+produce (produce_oil_rig_stockpile,
+	[FOOD: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_oil_rig, incoming_cargo_waiting("FOOD") > 4096) {1: produce_oil_rig_stockpile; produce_none;}
+
 /* END PRODUCTION */
 
 item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
@@ -80,6 +89,7 @@ item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
 	graphics {
         location_check: loc_check_oil_rig;
         produce_256_ticks: switch_produce_oil_rig;
+		produce_cargo_arrival: switch_stockpile_oil_rig;
 		extra_text_industry: string(STR_OIL_RIG_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
