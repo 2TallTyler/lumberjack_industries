@@ -2,7 +2,7 @@
 ##plural 0
 
 STR_GRF_NAME                        :{TITLE} {VERSION}
-STR_GRF_DESC                        :{ORANGE}I'm a lumberjack and I'm OK.{BLACK} More info coming soon!{}{}{BLACK}Created by 2TallTyler.
+STR_GRF_DESC                        :{ORANGE}I'm a lumberjack and I'm OK.{BLACK} A gameplay-focused industry set for sub-arctic.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
 
 STR_WEBSITE                         :https://github.com/2TallTyler/lumberjack_industries/blob/main/README.md
 
