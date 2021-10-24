@@ -65,6 +65,7 @@ Industry probabilities and maximum production quantities are balanced such that 
 
 #### Required NewGRFs
 * Improved Town Layouts 1.5.0 or better
+* [Renewed Village Growth](https://www.tt-forums.net/viewtopic.php?f=65&t=87052) Game Script
 * OpenGFX+ Landscape
   * Not strictly required, but strongly recommended.
   * Enables a variable snow line which changes by the season. Set the January and July snow line in NewGRF parameters according to your map height.
