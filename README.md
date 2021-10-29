@@ -75,6 +75,8 @@ Industry probabilities and maximum production quantities are balanced such that 
   * Passengers: Manual
   * Mail: Asymmetric
   * Others: Manual
+* In game placement of trees
+  * Grow and spread everywhere
 
 #### (Optional) Suggested NewGRFs
 My personal favorites, if you don't have your own.
