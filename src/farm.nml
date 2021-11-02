@@ -106,13 +106,21 @@ item (FEAT_INDUSTRIES, industry_farm, 9) {
 			accept_cargo("FERT"),
 			produce_cargo("GRAI", 0),
             ];
-		spec_flags: bitmask(IND_FLAG_PLANT_FIELDS_PERIODICALLY, IND_FLAG_PLANT_FIELDS_WHEN_BUILT);
 		name: string(STR_NAME_FARM);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FARM));
 		prob_map_gen: 4;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
 		map_colour: 65;
+	}
+	if (param_farm_fields) {
+		property {
+			spec_flags: bitmask(IND_FLAG_PLANT_FIELDS_PERIODICALLY, IND_FLAG_PLANT_FIELDS_WHEN_BUILT);
+		}
+	} else {
+		property {
+			spec_flags: 0;
+		}
 	}
 	graphics {
 		control_special: switch_farm_production_check_1;

@@ -14,6 +14,15 @@ grf {
 			def_value: 500;
 		}
 	}
+
+	param 1 {
+		param_farm_fields {
+			type: bool;
+			name: string(STR_PARAM_FARM_FIELDS_NAME);
+			desc: string(STR_PARAM_FARM_FIELDS_DESC);
+			def_value: 1;
+		}
+	}
 }
 
 /* Disable base game industries */
