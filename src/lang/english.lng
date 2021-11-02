@@ -11,7 +11,8 @@ STR_ERROR_NO_ITL                    :{TITLE} requires Improved Town Layouts vers
 STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE} is incompatible with {YELLOW}{STRING}{WHITE}.
 
 STR_PARAM_SECONDARY_POP_NAME        :Town population per secondary industry
-STR_PARAM_SECONDARY_POP_DESC        :The population required to support each secondary industry (Bakery, Box Factory, Oil Refinery, Paper Mill).
+STR_PARAM_SECONDARY_POP_DESC        :{LTBLUE}Default value: {ORANGE}500{}{WHITE}The population required to support each secondary industry (Bakery, Box Factory, Oil Refinery, Paper Mill).
+
 STR_PARAM_FARM_FIELDS_NAME          :Farms plant fields
 STR_PARAM_FARM_FIELDS_DESC          :{LTBLUE}Default value: {ORANGE}On{}{WHITE}Whether Farms try to plant fields around them upon map generation and each spring, if destroyed by snow.
 
