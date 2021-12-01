@@ -70,10 +70,10 @@ produce (produce_bakery_grain_stockpile,
 /* Should we consume extra Packaging? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery_idle_2, incoming_cargo_waiting("MNSP") > 4096) {
 	1: produce_bakery_packaging_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
-/* We don't have both Workers and Grain. Which do we consume? */
+/* Should we consume extra Grain? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_bakery_idle, incoming_cargo_waiting("GRAI") > 4096) {
 	1: produce_bakery_grain_stockpile;
 	switch_produce_bakery_idle_2;
@@ -110,6 +110,7 @@ item (FEAT_INDUSTRIES, industry_bakery, 13) {
 	}
 	graphics {
 		location_check: loc_check_bakery;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_bakery;
 		extra_text_industry: string(STR_BAKERY_HELPTEXT);
 		colour: COLOUR_YELLOW;

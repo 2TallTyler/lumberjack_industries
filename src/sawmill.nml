@@ -58,10 +58,10 @@ produce (produce_sawmill_stockpile,
 	1                         // Run callback again
 	)
 
-/* We don't have both Workers and Logs. Which do we consume? */
+/* Should we consume extra Logs? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_idle, incoming_cargo_waiting("WOOD") > 4096) {
 	1: produce_sawmill_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
 /* Check if we have both Workers and Logs */
@@ -89,6 +89,7 @@ item (FEAT_INDUSTRIES, industry_sawmill, 19) {
 	}
 	graphics {
 		location_check: loc_check_sawmill;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_sawmill;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

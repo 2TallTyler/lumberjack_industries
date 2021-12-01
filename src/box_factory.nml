@@ -50,14 +50,13 @@ produce (produce_box_factory_stockpile,
 	1                         // Run callback again
 	)
 
-/* We don't have both Workers and Paper. Which do we consume? */
+/* Should we consume extra paper? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory_idle, incoming_cargo_waiting("PAPR") > 4096) {
 	1: produce_box_factory_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
 /* Check if we have both Workers and Paper */
-
 switch (FEAT_INDUSTRIES, SELF, switch_produce_box_factory, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("PAPR") > 0)) {
 	1: produce_box_factory;
 	switch_produce_box_factory_idle;
@@ -82,6 +81,7 @@ item (FEAT_INDUSTRIES, industry_box_factory, 7) {
 	}
 	graphics {
 		location_check: loc_check_box_factory;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_box_factory;
 		colour: COLOUR_DARK_GREEN;
 		/* Don't allow any production changes */

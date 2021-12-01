@@ -73,10 +73,10 @@ produce (produce_furniture_factory_wood_stockpile,
 /* Should we consume extra Varnish? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle_2, incoming_cargo_waiting("COAT") > 4096) {
 	1: produce_furniture_factory_varnish_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
-/* We don't have both Workers and Lumber. Which do we consume? */
+/* Should we consume extra Lumber? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WDPR") > 4096) {
 	1: produce_furniture_factory_wood_stockpile;
 	switch_produce_furniture_factory_idle_2;
@@ -109,6 +109,7 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 	}
 	graphics {
 		location_check: loc_check_furniture_factory;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_furniture_factory;
 		extra_text_industry: string(STR_FURNITURE_FACTORY_HELPTEXT);
 		colour: COLOUR_PURPLE;

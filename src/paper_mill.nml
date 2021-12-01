@@ -136,7 +136,7 @@ produce (produce_paper_mill_chemicals_stockpile,
 /* Should we consume extra Kaolin? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_idle_3, incoming_cargo_waiting("KAOL") > 4096) {
 	1: produce_paper_mill_kaolin_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
 /* Should we consume extra Chemicals? */
@@ -180,6 +180,7 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 14) {
 	}
 	graphics {
 		location_check: loc_check_paper_mill;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_paper_mill;
 		extra_text_industry: string(STR_PAPER_MILL_HELPTEXT);
 		/* Don't allow any production changes */

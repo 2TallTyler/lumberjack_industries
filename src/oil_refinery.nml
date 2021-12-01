@@ -66,10 +66,10 @@ produce (produce_oil_refinery_stockpile,
 	1                         // Run callback again
 	)
 
-/* We don't have both Workers and Oil. Which do we consume? */
+/* Should we consume extra Oil? */
 switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_idle, incoming_cargo_waiting("OIL_") > 4096) {
 	1: produce_oil_refinery_stockpile;
-	switch_produce_idle;
+	produce_none;
 }
 
 /* Check if we have both Workers and Oil */
@@ -101,6 +101,7 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 4) {
 	}
 	graphics {
 		location_check: loc_check_oil_refinery;
+		produce_256_ticks: switch_produce_idle;
 		produce_cargo_arrival: switch_produce_oil_refinery;
 		colour: COLOUR_ORANGE;
 		/* Don't allow any production changes */
