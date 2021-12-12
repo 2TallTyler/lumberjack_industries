@@ -23,6 +23,15 @@ grf {
 			def_value: 1;
 		}
 	}
+
+	param 2 {
+		param_static_payments {
+			type: bool;
+			name: string(STR_PARAM_STATIC_PAYMENTS_NAME);
+			desc: string(STR_PARAM_STATIC_PAYMENTS_DESC);
+			def_value: 1;
+		}
+	}
 }
 
 /* Disable base game industries */

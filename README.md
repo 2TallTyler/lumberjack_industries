@@ -20,6 +20,8 @@ Factories of all types need Workers to process cargo, and you'll need to connect
 ## General industry mechanics
 Nearly all industries are generated during map generation, and do not close or spawn during gameplay.
 
+Optional via NewGRF parameters (on by default), cargo payments are static, independent of the distance transported or the time taken to complete the delivery. This incentivizes short-distance transport instead of simply routing everything to the furthest possible destination. Read my [blog post](https://github.com/2TallTyler/blog/discussions/1) about why I've done this.
+
 #### Primary industries
 * Coal Mine
 * Oil Rig
