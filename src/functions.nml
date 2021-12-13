@@ -13,7 +13,7 @@ switch (FEAT_INDUSTRIES, SELF, IsBeingFunded, (extra_callback_info2 == IND_CREAT
  * Note: The sum of the radii is greater than simply the largest radii, but it means larger towns have a greater range for industry placement.
  * @returns the sum of the town's townzone radii. 
  */
- switch (FEAT_INDUSTRIES, PARENT, StoreTownRadii,   town_zone_0_radius_square +
+switch (FEAT_INDUSTRIES, PARENT, StoreTownRadii,   town_zone_0_radius_square +
                                                     town_zone_1_radius_square + 
                                                     town_zone_2_radius_square + 
                                                     town_zone_3_radius_square + 
@@ -59,7 +59,7 @@ switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (
  */
  switch (FEAT_INDUSTRIES, SELF, NoNearbyCompetitors, industrytype, required_distance, industry_distance(industrytype) > required_distance) {return;}
 
- /**
+/**
  * Check if an industry is within a range of elevation.
  * @param min_z elevation (inclusive)
  * @param max_z elevation (inclusive)
@@ -144,6 +144,14 @@ switch (FEAT_CARGOS, SELF, MaxStationStorage, maximum, (getbits(extra_callback_i
 	return GetRatingFromTime() + GetRatingFromCargo() + GetRatingFromSpeed();
 }
 
+/**
+ * Calculate the cargo profit if enabled in NewGRF parameters, or let the callback fail to use the default calculation.
+ * This function scales the payment by the map size, so larger maps give greater payments to avoid running costs eating your profits.
+ * Base game code scales this returned value by the cargo value and amount transported.
+ * @return a custom cargo profit if param_static_payments is enabled, else return CB_FAILED.
+ */
+switch (FEAT_CARGOS, SELF, CargoProfit, param_static_payments) {1: return 128 + (map_max_edge / 8); return CB_FAILED;}
+
 /* PRODUCTION BLOCKS */
 
 /* Empty production block. */
@@ -157,11 +165,3 @@ switch (FEAT_INDUSTRIES, SELF, switch_produce_idle, incoming_cargo_waiting("PASS
 	1: produce_idle_workers;
 	produce_none;
 }
-
-/**
-  * Calculate the cargo profit if enabled in NewGRF parameters, or let the callback fail to use the default calculation.
-  * This function scales the payment by the map size, so larger maps give greater payments to avoid running costs eating your profits.
-  * Base game code scales this returned value by the cargo value and amount transported.
-  * @return a custom cargo profit if param_static_payments is enabled, else return CB_FAILED.
-  */
-switch (FEAT_CARGOS, SELF, CargoProfit, param_static_payments) {1: return 128 + (map_max_edge / 8); return CB_FAILED;}
