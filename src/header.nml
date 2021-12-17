@@ -32,6 +32,15 @@ grf {
 			def_value: 1;
 		}
 	}
+
+	param 3 {
+		param_primary_quadrants {
+			type: bool;
+			name: string(STR_PARAM_PRIMARY_QUADRANTS_NAME);
+			desc: string(STR_PARAM_PRIMARY_QUADRANTS_DESC);
+			def_value: 0;
+		}
+	}
 }
 
 /* Disable base game industries */

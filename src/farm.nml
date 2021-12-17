@@ -53,7 +53,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_farm_6) {
 switch (FEAT_INDUSTRIES, SELF, switch_farm_production_check_1, (current_month > 1 && current_month < 6) || (date_loaded == current_date)) {return;}
 
 /* Construction check for Farm */
-switch (FEAT_INDUSTRIES, SELF, loc_check_farm, !IsNearTown() && IndustryElevationCheck(0, 1) && NoNearbyCompetitors(industry_farm, 40))
+switch (FEAT_INDUSTRIES, SELF, loc_check_farm, !IsNearTown() && IndustryElevationCheck(0, 1) && NoNearbyCompetitors(industry_farm, 40) && (IsInQuadrantS() || IsInQuadrantW()))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */

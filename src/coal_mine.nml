@@ -58,7 +58,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_7) {
 }
 
 /* Construction check for Coal Mine */
-switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, !IsNearTown() && IndustryElevationCheck(6, 255) && NoNearbyCompetitors(industry_coal_mine, 20))
+switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, !IsNearTown() && IndustryElevationCheck(6, 255) && NoNearbyCompetitors(industry_coal_mine, 20) && IsInQuadrantN())
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */

@@ -138,7 +138,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_17) {
 }
 
 /* Construction check for Kaolin Mine */
-switch (FEAT_INDUSTRIES, SELF, loc_check_kaolin_mine, !IsNearTown() && IndustryElevationCheck(0, 2) && NoNearbyCompetitors(industry_kaolin_mine, 20))
+switch (FEAT_INDUSTRIES, SELF, loc_check_kaolin_mine, !IsNearTown() && IndustryElevationCheck(0, 2) && NoNearbyCompetitors(industry_kaolin_mine, 20) && IsInQuadrantE())
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */

@@ -30,6 +30,8 @@ Optional via NewGRF parameters (on by default), cargo payments are static, indep
 
 These industries generate away from towns, sometimes with elevation requirements. They have a fixed production and do not require Workers, but have boost cargos which can be delivered to double production. Boost cargos are stockpiled up to 4,096 units and consumed during each production tick (8-9 times per month) to determine how much cargo is produced.
 
+Optional via NewGRF parameters (off by default), primary industries only spawn in certain parts of the map, to encourage multiplayer interaction between players.
+
 #### Secondary industries
 * Oil Refinery
 * Sawmill
