@@ -19,9 +19,6 @@ STR_PARAM_FARM_FIELDS_DESC          :{LTBLUE}Default value: {ORANGE}On{}{WHITE}W
 STR_PARAM_STATIC_PAYMENTS_NAME      :Static cargo payments
 STR_PARAM_STATIC_PAYMENTS_DESC      :{LTBLUE}Default value: {ORANGE}On{}{WHITE}If enabled, cargo delivery payments do not depend on distance transported. Payments are scaled to map size: the larger the map, the greater the payments.
 
-STR_PARAM_PRIMARY_QUADRANTS_NAME    :Primary industries spawn in quadrant regions
-STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}Default value: {ORANGE}Off{}{WHITE}If enabled, primary industries only spawn in some parts of the map.
-
 STR_TOWN                            :{STRING}
 STR_STATION                         :{STRING} {STRING}
 
