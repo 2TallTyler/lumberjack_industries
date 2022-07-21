@@ -26,6 +26,7 @@ STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To
 STR_FARM_HELPTEXT                   :Only produces September through November. Load into vehicles promptly to avoid spoilage.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
 STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Food per month.
 STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
+STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
 STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
 STR_FURNITURE_FACTORY_HELPTEXT      :Production efficiency per unit of Lumber:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Varnish
 STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit of Logs:{} {WHITE}Quarter{BLACK}: 1 Worker{} {WHITE}Half{BLACK}: 1 Worker + 0.5 Kaolin or 0.5 Chemicals{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Kaolin + 0.5 Chemicals
@@ -38,6 +39,8 @@ STR_NAME_BOX_FACTORY                :Box Factory
 STR_NAME_OIL_RIG                    :Oil Rig
 STR_NAME_OIL_REFINERY               :Oil Refinery
 STR_NAME_KAOLIN_MINE                :Kaolin Mine
+STR_NAME_COAL_MINE                  :Coal Mine
+STR_NAME_POWER_PLANT                :Power Plant
 STR_NAME_FURNITURE_FACTORY          :Furniture Factory
 STR_NAME_SAWMILL                    :Sawmill
 

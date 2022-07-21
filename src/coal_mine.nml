@@ -1,0 +1,118 @@
+/* Begin Coal Mine */
+
+/* Override industrytiles to accept all cargos. */
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
+	property {
+		substitute: 0;
+		override: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
+	property {
+		substitute: 1;
+		override: 1;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
+	property {
+		substitute: 2;
+		override: 2;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
+	property {
+		substitute: 3;
+		override: 3;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5) {
+	property {
+		substitute: 4;
+		override: 4;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_6) {
+	property {
+		substitute: 5;
+		override: 5;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_7) {
+	property {
+		substitute: 6;
+		override: 6;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+/* Construction check for Coal Mine */
+switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, !IsNearTown() && IndustryElevationCheck(6, 255) && NoNearbyCompetitors(industry_coal_mine, 20) && IsInQuadrantN())
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+/* Boosted production if Fuel is supplied */
+produce (produce_coal_mine_boosted,
+	[FUEL: 3;],		// Consume
+	[COAL: 32;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Regular production */
+produce (produce_coal_mine,
+	[],				// Consume
+	[COAL: 16;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Check for Fuel for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_coal_mine_1, incoming_cargo_waiting("FUEL") >= 3) {1: produce_coal_mine_boosted; produce_coal_mine;}
+
+/* Don't build up too large a stockpile */
+produce (produce_coal_mine_stockpile,
+	[FUEL: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+	
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_coal_mine, incoming_cargo_waiting("FUEL") > 4096) {1: produce_coal_mine_stockpile; produce_none;}
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_coal_mine, 16) {
+	property {
+		substitute: INDUSTRYTYPE_COAL_MINE;
+		life_type: IND_LIFE_TYPE_EXTRACTIVE;
+		cargo_types: [
+			accept_cargo("FUEL"),
+			produce_cargo("COAL", 0),
+            ];
+		name: string(STR_NAME_COAL_MINE);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
+		prob_map_gen: 4;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+	}
+	graphics {
+        location_check: loc_check_coal_mine;
+        produce_256_ticks: switch_produce_coal_mine_1;
+		produce_cargo_arrival: switch_stockpile_coal_mine;
+		extra_text_industry: string(STR_COAL_MINE_HELPTEXT);
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}
