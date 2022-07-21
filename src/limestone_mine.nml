@@ -1,7 +1,7 @@
-/* Begin Kaolin Mine */
+/* Begin Limestone Mine */
 
 /* Override industrytiles to accept all cargos. */
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_1) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_1) {
 	property {
 		substitute: 72;
 		override: 72;
@@ -9,7 +9,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_1) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_2) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_2) {
 	property {
 		substitute: 73;
 		override: 73;
@@ -17,7 +17,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_2) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_3) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_3) {
 	property {
 		substitute: 74;
 		override: 74;
@@ -25,7 +25,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_3) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_4) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_4) {
 	property {
 		substitute: 75;
 		override: 75;
@@ -33,7 +33,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_4) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_5) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_5) {
 	property {
 		substitute: 76;
 		override: 76;
@@ -41,7 +41,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_5) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_6) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_6) {
 	property {
 		substitute: 77;
 		override: 77;
@@ -49,7 +49,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_6) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_7) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_7) {
 	property {
 		substitute: 78;
 		override: 78;
@@ -57,7 +57,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_7) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_8) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_8) {
 	property {
 		substitute: 79;
 		override: 79;
@@ -65,7 +65,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_8) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_9) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_9) {
 	property {
 		substitute: 80;
 		override: 80;
@@ -73,7 +73,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_9) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_10) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_10) {
 	property {
 		substitute: 81;
 		override: 81;
@@ -81,7 +81,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_10) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_11) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_11) {
 	property {
 		substitute: 82;
 		override: 82;
@@ -89,7 +89,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_11) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_12) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_12) {
 	property {
 		substitute: 83;
 		override: 83;
@@ -97,7 +97,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_12) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_13) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_13) {
 	property {
 		substitute: 84;
 		override: 84;
@@ -105,7 +105,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_13) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_14) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_14) {
 	property {
 		substitute: 85;
 		override: 85;
@@ -113,7 +113,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_14) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_15) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_15) {
 	property {
 		substitute: 86;
 		override: 86;
@@ -121,7 +121,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_15) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_16) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_16) {
 	property {
 		substitute: 87;
 		override: 87;
@@ -129,7 +129,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_16) {
 	}
 }
 
-item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_17) {
+item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_17) {
 	property {
 		substitute: 88;
 		override: 88;
@@ -137,60 +137,60 @@ item (FEAT_INDUSTRYTILES, ind_tile_kaolin_mine_17) {
 	}
 }
 
-/* Construction check for Kaolin Mine */
-switch (FEAT_INDUSTRIES, SELF, loc_check_kaolin_mine, !IsNearTown() && IndustryElevationCheck(0, 2) && NoNearbyCompetitors(industry_kaolin_mine, 20))
+/* Construction check for Limestone Mine */
+switch (FEAT_INDUSTRIES, SELF, loc_check_limestone_mine, !IsNearTown() && IndustryElevationCheck(0, 2) && NoNearbyCompetitors(industry_limestone_mine, 20))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
 /* Boosted production if Fuel is supplied */
-produce (produce_kaolin_mine_boosted,
+produce (produce_limestone_mine_boosted,
 	[FUEL: 3;],		// Consume
-	[KAOL: 32;],	// Produce
+	[LIME: 32;],	// Produce
 	0 				// Don't run callback again
 	)
 
 /* Regular production */
-produce (produce_kaolin_mine,
+produce (produce_limestone_mine,
 	[],				// Consume
-	[KAOL: 16;],	// Produce
+	[LIME: 16;],	// Produce
 	0 				// Don't run callback again
 	)
 
 /* Check for Fuel for normal or boosted production */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_kaolin_mine_1, incoming_cargo_waiting("FUEL") >= 3) {1: produce_kaolin_mine_boosted; produce_kaolin_mine;}
+switch (FEAT_INDUSTRIES, SELF, switch_produce_limestone_mine_1, incoming_cargo_waiting("FUEL") >= 3) {1: produce_limestone_mine_boosted; produce_limestone_mine;}
 
 /* Don't build up too large a stockpile */
-produce (produce_kaolin_mine_stockpile,
+produce (produce_limestone_mine_stockpile,
 	[FUEL: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
 	
-switch (FEAT_INDUSTRIES, SELF, switch_stockpile_kaolin_mine, incoming_cargo_waiting("FUEL") > 4096) {1: produce_kaolin_mine_stockpile; produce_none;}
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_limestone_mine, incoming_cargo_waiting("FUEL") > 4096) {1: produce_limestone_mine_stockpile; produce_none;}
 
 /* END PRODUCTION */
 
-item (FEAT_INDUSTRIES, industry_kaolin_mine, 15) {
+item (FEAT_INDUSTRIES, industry_limestone_mine, 15) {
 	property {
 		substitute: INDUSTRYTYPE_GOLD_MINE;
 		life_type: IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types: [
 			accept_cargo("FUEL"),
-			produce_cargo("KAOL", 0),
+			produce_cargo("LIME", 0),
             ];
-		name: string(STR_NAME_KAOLIN_MINE);
-		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_KAOLIN_MINE));
+		name: string(STR_NAME_LIMESTONE_QUARRY);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LIMESTONE_QUARRY));
 		prob_map_gen: 1;
 		prob_in_game: 0;
 		map_colour: 148;
 		fund_cost_multiplier: 40;
 	}
 	graphics {
-        location_check: loc_check_kaolin_mine;
-        produce_256_ticks: switch_produce_kaolin_mine_1;
-		produce_cargo_arrival: switch_stockpile_kaolin_mine;
-		extra_text_industry: string(STR_KAOLIN_MINE_HELPTEXT);
+        location_check: loc_check_limestone_mine;
+        produce_256_ticks: switch_produce_limestone_mine_1;
+		produce_cargo_arrival: switch_stockpile_limestone_mine;
+		extra_text_industry: string(STR_LIMESTONE_QUARRY_HELPTEXT);
         /* Don't allow any production changes */
 		build_prod_change: 16; // 100% production
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

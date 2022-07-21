@@ -38,55 +38,34 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_furniture_factory, IsBeingFunded() || (
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
-produce (produce_furniture_factory_efficient,
-	[PASS: 2; WDPR: 2; COAT: 1;],   // Consume
-	[GOOD: 2;],                     // Produce
-	1                               // Run callback again
-	)
+produce (produce_furniture_factory,
+    [WDPR: LOAD_TEMP(1); COAT: LOAD_TEMP(1);], // consume
+    [GOOD: LOAD_TEMP(1) * 2; PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
 
-produce (produce_furniture_factory_basic,
-	[PASS: 2; WDPR: 2;],            // Consume
-	[GOOD: 1;],                     // Produce
-	1                               // Run callback again
-	)
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("WDPR"), incoming_cargo_waiting("COAT")), 1), // Set the production amount to the current input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("GOOD")) / 100), 2), // Set the passenger production level
+    ]) {produce_furniture_factory;}
 
-/* Is production boosted by Varnish? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_varnish, incoming_cargo_waiting("COAT") > 0) {
-	1: produce_furniture_factory_efficient;
-	produce_furniture_factory_basic;
-}
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("GOOD")) / 100), 2), // Set the passenger production level
+    min(incoming_cargo_waiting("WDPR"), incoming_cargo_waiting("COAT")) > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_furniture_factory;
+        switch_produce_furniture_factory_min;
+    }
 
-/* Consume extra Varnish */
-produce (produce_furniture_factory_varnish_stockpile,
-	[COAT: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
-
-/* Consume extra Lumber */
-produce (produce_furniture_factory_wood_stockpile,
-	[WDPR: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
-
-/* Should we consume extra Varnish? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle_2, incoming_cargo_waiting("COAT") > 4096) {
-	1: produce_furniture_factory_varnish_stockpile;
-	produce_none;
-}
-
-/* Should we consume extra Lumber? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory_idle, incoming_cargo_waiting("WDPR") > 4096) {
-	1: produce_furniture_factory_wood_stockpile;
-	switch_produce_furniture_factory_idle_2;
-}
-
-/* Check if we have both Workers and Lumber */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, (incoming_cargo_waiting("PASS") >= 2 && incoming_cargo_waiting("WDPR") >= 4)) {
-	1: switch_produce_furniture_factory_varnish;
-	switch_produce_furniture_factory_idle;
-}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_furniture_factory, incoming_cargo_waiting("WDPR") > 0 && incoming_cargo_waiting("COAT") > 0)
+    {
+        1: switch_produce_furniture_factory_2;
+        produce_none;
+    }
 
 /* END PRODUCTION */
 
@@ -95,10 +74,10 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 		substitute:	INDUSTRYTYPE_TEMPERATE_FACTORY;
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
-			accept_cargo("PASS"),
 			accept_cargo("WDPR"),
 			accept_cargo("COAT"),
 			produce_cargo("GOOD", 0),
+            produce_cargo("PASS", 0),
 		];
 		name: string(STR_NAME_FURNITURE_FACTORY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FURNITURE_FACTORY));
@@ -108,10 +87,9 @@ item (FEAT_INDUSTRIES, industry_furniture_factory, 18) {
 		map_colour: 140;
 	}
 	graphics {
-		location_check: loc_check_furniture_factory;
-		produce_256_ticks: switch_produce_idle;
-		produce_cargo_arrival: switch_produce_furniture_factory;
-		extra_text_industry: string(STR_FURNITURE_FACTORY_HELPTEXT);
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_furniture_factory;
+		produce_256_ticks: switch_produce_furniture_factory;
 		colour: COLOUR_PURPLE;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

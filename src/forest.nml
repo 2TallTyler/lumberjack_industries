@@ -1,0 +1,190 @@
+
+/* *** Begin Forest *** */
+
+spritelayout sprlay_forest_grow_1 {
+	ground		{sprite:GROUNDSPRITE_NORMAL;}
+	building	{sprite:2072;}
+}
+
+spritelayout sprlay_forest_grow_2 {
+	ground		{sprite:GROUNDSPRITE_NORMAL;}
+	building	{sprite:2073;}
+}
+
+spritelayout sprlay_forest_grow_3 {
+	ground		{sprite:GROUNDSPRITE_NORMAL;}
+	building	{sprite:2074;}
+}
+
+spritelayout sprlay_forest_grown {
+	ground		{sprite:GROUNDSPRITE_NORMAL;}
+	building	{sprite:2075;}
+}
+
+spritelayout sprlay_forest_cut {
+	ground		{sprite:GROUNDSPRITE_NORMAL;}
+	building	{sprite:2076;}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_forest_10h) {
+    property {
+        substitute: 16;
+        override: 16;
+        accepted_cargos: [[PASS, 8]];
+    }
+}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+/* Boosted production if FERT is supplied */
+produce (produce_forest_boosted,
+	[FERT: 3;],		// Consume
+	[WOOD: 32; WDCH: 16;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Regular production */
+produce (produce_forest,
+	[],				// Consume
+	[WOOD: 16; WDCH: 8;],	// Produce
+	0 				// Don't run callback again
+	)
+
+/* Check for FERT for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_forest, incoming_cargo_waiting("FERT") >= 3) {1: produce_forest_boosted; produce_forest;}
+
+/* Don't build up too large a stockpile */
+produce (produce_forest_stockpile,
+	[FERT: 1;],               // Consume
+	[],                       // Produce
+	1                         // Run callback again
+	)
+
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_forest, incoming_cargo_waiting("FERT") > 4096) {1: produce_forest_stockpile; produce_none;}
+
+/* END PRODUCTION */
+
+/* Location check */
+switch (FEAT_INDUSTRIES, SELF, loc_check_forest, IsTown() && nearby_tile_terrain_type(0,0) == TILETYPE_SNOW) {1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+item (FEAT_INDUSTRIES, industry_forest, 1) {
+	property {
+		substitute: INDUSTRYTYPE_FOREST;
+		life_type: IND_LIFE_TYPE_ORGANIC;
+		cargo_types: [
+            accept_cargo("FERT"),
+            produce_cargo("WOOD", 0),
+            produce_cargo("WDCH", 0),
+            produce_cargo("PASS", 0),
+        ];
+		name: TTD_STR_INDUSTRY_NAME_FOREST;
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_FOREST));
+        prob_map_gen: 2; // Account for difficulty of finding suitable locatiom
+        prob_in_game: 0;
+		fund_cost_multiplier: 255;
+	}
+	graphics {
+        location_check: loc_check_forest;
+        produce_256_ticks: switch_produce_forest;
+		produce_cargo_arrival: switch_stockpile_forest;
+        /* Don't allow any production changes */
+		build_prod_change: 16; // 100% production
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}
+
+/* Forest objects */
+
+item (FEAT_OBJECTS, object_item_forest_grow_1) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_forest_grow_1;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_forest_grow_2) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_forest_grow_2;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_forest_grow_3) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_forest_grow_3;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_forest_grown) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_forest_grown;
+	}
+}
+
+item (FEAT_OBJECTS, object_item_forest_cut) {
+	property {
+		class:					"HSIN";
+		classname:				string(STR_NAME_OBJECT_MENU);
+		name:					TTD_STR_INDUSTRY_NAME_FOREST;
+		climates_available:		ALL_CLIMATES;
+		object_flags:			bitmask(OBJ_FLAG_ANYTHING_REMOVE);
+		build_cost_multiplier:	0;
+		remove_cost_multiplier:	0;
+		size:					[1,1];
+		introduction_date:		1700;
+		num_views:				1;
+	}
+	graphics {
+		default:				sprlay_forest_cut;
+	}
+}
+
+
+/* *** End Forest *** */

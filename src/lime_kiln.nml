@@ -1,0 +1,98 @@
+/* Begin Lime Kiln */
+
+/* Override industrytiles to accept all cargos. */
+item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_1) {
+	property {
+		substitute: 7;
+		override: 7;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_2) {
+	property {
+		substitute: 8;
+		override: 8;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_3) {
+	property {
+		substitute: 9;
+		override: 9;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_4) {
+	property {
+		substitute: 10;
+		override: 10;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+}
+
+switch (FEAT_INDUSTRIES, SELF, loc_check_lime_kiln, IsBeingFunded() || (IsNearTown() && TownHasPopulation(600) && NoNearbyCompetitors(industry_lime_kiln, 128)))
+	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
+
+/* BEGIN PRODUCTION: Read up from bottom */
+
+produce (produce_lime_kiln,
+    [LIME: LOAD_TEMP(1); COAL: LOAD_TEMP(1);], // consume
+    [QLME: LOAD_TEMP(1); FERT: LOAD_TEMP(1); PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
+
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_lime_kiln_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("LIME"), incoming_cargo_waiting("COAL")), 1), // Set the production amount to the current input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("QLME")) / 100), 2), // Set the passenger production level
+    ]) {produce_lime_kiln;}
+
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_lime_kiln_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("QLME")) / 100), 2), // Set the passenger production level
+    min(incoming_cargo_waiting("LIME"), incoming_cargo_waiting("COAL")) > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_lime_kiln;
+        switch_produce_lime_kiln_min;
+    }
+
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_lime_kiln, incoming_cargo_waiting("LIME") > 0 && incoming_cargo_waiting("COAL") > 0)
+    {
+        1: switch_produce_lime_kiln_2;
+        produce_none;
+    }
+
+/* END PRODUCTION */
+
+item (FEAT_INDUSTRIES, industry_lime_kiln, 17) {
+	property {
+		substitute: INDUSTRYTYPE_POWER_PLANT;
+		life_type: IND_LIFE_TYPE_PROCESSING;
+		cargo_types: [
+			accept_cargo("LIME"),
+            accept_cargo("COAL"),
+            produce_cargo("QLME", 0),
+            produce_cargo("FERT", 0),
+            produce_cargo("PASS", 0),
+            ];
+		name: string(STR_NAME_LIME_KILN);
+		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_LIME_KILN));
+		prob_map_gen: 1;
+		prob_in_game: 0;
+		fund_cost_multiplier: 40;
+		map_colour: 152;
+	}
+	graphics {
+        extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_lime_kiln;
+		produce_256_ticks: switch_produce_lime_kiln;
+		/* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+	}
+}

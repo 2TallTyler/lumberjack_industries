@@ -2,7 +2,7 @@
 /* *** Begin Cargos *** */
 
 cargotable {
-	PASS, COAL, MAIL, OIL_, RFPR, GOOD, GRAI, WOOD, WDPR, PAPR, MNSP, FERT, FOOD, KAOL, FUEL, COAT
+	PASS, COAL, MAIL, OIL_, RFPR, GOOD, GRAI, WOOD, WDPR, PAPR, FERT, FOOD, FUEL, COAT, LIME, QLME, BAKE, ENSP, WDCH
 }
 
 // Original ID
@@ -10,26 +10,23 @@ item (FEAT_CARGOS, cargo_passengers, 0) {
 	property {
 		number:						0;
 		sprite:						4297;
-		type_name:					string(STR_CARGO_NAME_WORKERS);
-		unit_name:					string(STR_CARGO_SINGULAR_WORKERS);
-		type_abbreviation:			string(STR_CARGO_ABBREV_WORKERS);
+		type_name:					TTD_STR_CARGO_PLURAL_PASSENGERS;
+		unit_name:					TTD_STR_CARGO_SINGULAR_PASSENGER;
+		type_abbreviation:			TTD_STR_ABBREV_PASSENGERS;
 		weight:						0.0625;
 		is_freight:					0;
 		cargo_classes:				bitmask(CC_PASSENGERS);
 		cargo_label:				"PASS";
 		town_growth_effect:			TOWNGROWTH_PASSENGERS;
 		town_growth_multiplier:		0;
-		units_of_cargo:				string(STR_CARGO_QUANTITY_WORKERS);
-		items_of_cargo:				string(STR_CARGO_QUANTITY_WORKERS);
+		units_of_cargo:				TTD_STR_PASSENGERS;
+		items_of_cargo:				TTD_STR_QUANTITY_PASSENGERS;
 		penalty_lowerbound:			0;
 		single_penalty_length:		22;
 		station_list_colour:		152;
 		cargo_payment_list_colour:	152;
-		price_factor:				param_static_payments ? 170 : 110;
+		price_factor:				110;
 		capacity_multiplier:		4;
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -53,11 +50,8 @@ item (FEAT_CARGOS, cargo_coal, 1) {
 		single_penalty_length:		255;
 		station_list_colour:		6;
 		cargo_payment_list_colour:	6;
-		price_factor:				param_static_payments ? 120 : 70;
+		price_factor:				70;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -81,7 +75,7 @@ item (FEAT_CARGOS, cargo_mail, 2) {
 		single_penalty_length:		24;
 		station_list_colour:		15;
 		cargo_payment_list_colour:	15;
-		price_factor:				param_static_payments ? 175 : 165;
+		price_factor:				165;
 		capacity_multiplier:		2;		
 	}
 }
@@ -106,11 +100,8 @@ item (FEAT_CARGOS, cargo_oil, 3) {
 		single_penalty_length:		255;
 		station_list_colour:		185;
 		cargo_payment_list_colour:	185;
-		price_factor:				param_static_payments ? 100 : 50;
+		price_factor:				50;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -134,11 +125,8 @@ item (FEAT_CARGOS, cargo_chemicals, 4) {
 		single_penalty_length:		255;
 		station_list_colour:		46;
 		cargo_payment_list_colour:	46;
-		price_factor:				param_static_payments ? 140 : 95;
+		price_factor:				95;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -162,22 +150,19 @@ item (FEAT_CARGOS, cargo_goods, 5) {
 		single_penalty_length:		64;
 		station_list_colour:		141;
 		cargo_payment_list_colour:	141;
-		price_factor:				param_static_payments ? 165 : 170;
+		price_factor:				170;
 		capacity_multiplier:		2;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
 // Original ID
-item (FEAT_CARGOS, cargo_wheat, 6) {
+item (FEAT_CARGOS, cargo_grain, 6) {
 	property {
 		number:						6;
 		sprite:						4303;
-		type_name:					TTD_STR_CARGO_PLURAL_WHEAT;
-		unit_name:					TTD_STR_CARGO_SINGULAR_WHEAT;
-		type_abbreviation:			TTD_STR_ABBREV_WHEAT;
+		type_name:					TTD_STR_CARGO_PLURAL_GRAIN;
+		unit_name:					TTD_STR_CARGO_SINGULAR_GRAIN;
+		type_abbreviation:			TTD_STR_ABBREV_GRAIN;
 		weight:						1.0;
 		is_freight:					1;
 		cargo_classes:				bitmask(CC_BULK);
@@ -185,17 +170,13 @@ item (FEAT_CARGOS, cargo_wheat, 6) {
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		1.0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				TTD_STR_QUANTITY_WHEAT;
+		items_of_cargo:				TTD_STR_QUANTITY_GRAIN;
 		penalty_lowerbound:			4;
 		single_penalty_length:		40;
 		station_list_colour:		65;
 		cargo_payment_list_colour:	65;
-		price_factor:				param_static_payments ? 115 : 55;
+		price_factor:				55;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		station_rating:				MaxStationStorage(300);
-		profit:						CargoProfit();
 	}
 }
 
@@ -219,11 +200,8 @@ item (FEAT_CARGOS, cargo_logs, 7) {
 		single_penalty_length:		255;
 		station_list_colour:		85;
 		cargo_payment_list_colour:	85;
-		price_factor:				param_static_payments ? 110 : 45;
+		price_factor:				45;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -246,11 +224,8 @@ item (FEAT_CARGOS, cargo_lumber, 8) {
 		single_penalty_length:		255;
 		station_list_colour:		63;
 		cargo_payment_list_colour:	63;
-		price_factor:				param_static_payments ? 125 : 80;
+		price_factor:				80;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -274,39 +249,33 @@ item (FEAT_CARGOS, cargo_paper, 9) {
 		single_penalty_length:		255;
 		station_list_colour:		14;
 		cargo_payment_list_colour:	14;
-		price_factor:				param_static_payments ? 150 : 85;
+		price_factor:				85;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
-item (FEAT_CARGOS, cargo_packaging, 10) {
-	property {
-		number:						10;
-		sprite:						4313;
-		type_name:					string(STR_CARGO_NAME_PACKAGING);
-		unit_name:					string(STR_CARGO_NAME_PACKAGING);
-		type_abbreviation:			string(STR_CARGO_ABBREV_PACKAGING);
-		weight:						1;
-		is_freight:					1;
-		cargo_classes:				bitmask(CC_EXPRESS, CC_PIECE_GOODS);
-		cargo_label:				"MNSP";
-		town_growth_effect:			TOWNGROWTH_NONE;
-		town_growth_multiplier:		0;
-		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_PACKAGING);
-		penalty_lowerbound:			16;
-		single_penalty_length:		120;
-		station_list_colour:		95;
-		cargo_payment_list_colour:	95;
-		price_factor:				param_static_payments ? 155 : 105;
-		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
-	}
+item (FEAT_CARGOS, cargo_wood_chips, 10) {
+    property {
+        number:                     10;
+        sprite:                     4309;
+        type_name:                  string(STR_CARGO_NAME_WDCH);
+        unit_name:                  string(STR_CARGO_NAME_WDCH);
+        type_abbreviation:          string(STR_CARGO_ABBREV_WDCH);
+        weight:                     1;
+        is_freight:                 1;
+        cargo_classes:              bitmask(CC_BULK);
+        cargo_label:                "WDCH";
+        town_growth_effect:         TOWNGROWTH_NONE;
+        town_growth_multiplier:     0;
+        units_of_cargo:             TTD_STR_TONS;
+        items_of_cargo:             string(STR_CARGO_QUANTITY_WDCH);
+        penalty_lowerbound:         30;
+        single_penalty_length:      255;
+        station_list_colour:        108;
+        cargo_payment_list_colour:  108;
+        price_factor:               113;
+        capacity_multiplier:        1;
+    }
 }
 
 item (FEAT_CARGOS, cargo_fertilizer, 11) {
@@ -328,11 +297,8 @@ item (FEAT_CARGOS, cargo_fertilizer, 11) {
 		single_penalty_length:		44;
 		station_list_colour:		48;
 		cargo_payment_list_colour:	48;
-		price_factor:				param_static_payments ? 130 : 100;
+		price_factor:				100;
 		capacity_multiplier:		1;
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -356,65 +322,56 @@ item (FEAT_CARGOS, cargo_food, 12) {
 		single_penalty_length:		24;
 		station_list_colour:		51;
 		cargo_payment_list_colour:	51;
-		price_factor:				param_static_payments ? 160 : 150;
+		price_factor:				150;
 		capacity_multiplier:		1;		
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
-item (FEAT_CARGOS, cargo_kaolin, 13) {
+item (FEAT_CARGOS, cargo_limestone, 13) {
 	property {
 		number:						13;
-		sprite:						4320;
-		type_name:					string(STR_CARGO_NAME_KAOLIN);
-		unit_name:					string(STR_CARGO_NAME_KAOLIN);
-		type_abbreviation:			string(STR_CARGO_ABBREV_KAOLIN);
+		sprite:						4322;
+		type_name:					string(STR_CARGO_NAME_LIMESTONE);
+		unit_name:					string(STR_CARGO_NAME_LIMESTONE);
+		type_abbreviation:			string(STR_CARGO_ABBREV_LIMESTONE);
 		weight:						1;
 		is_freight:					1;
-		cargo_classes:				bitmask(CC_BULK, CC_LIQUID, CC_COVERED);
-		cargo_label:				"KAOL";
+		cargo_classes:				bitmask(CC_BULK);
+		cargo_label:				"LIME";
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_KAOLIN);
-		penalty_lowerbound:			30;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_LIMESTONE);
+		penalty_lowerbound:			38;
 		single_penalty_length:		255;
 		station_list_colour:		148;
 		cargo_payment_list_colour:	148;
-		price_factor:				param_static_payments ? 105 : 40;
+		price_factor:				92;
 		capacity_multiplier:		1;
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
-item (FEAT_CARGOS, cargo_fuel, 14) {
+item (FEAT_CARGOS, cargo_quicklime, 14) {
 	property {
 		number:						14;
-		sprite:						4300;
-		type_name:					string(STR_CARGO_NAME_FUEL);
-		unit_name:					string(STR_CARGO_NAME_FUEL);
-		type_abbreviation:			string(STR_CARGO_ABBREV_FUEL);
+		sprite:						4320;
+		type_name:					string(STR_CARGO_NAME_QUICKLIME);
+		unit_name:					string(STR_CARGO_NAME_QUICKLIME);
+		type_abbreviation:			string(STR_CARGO_ABBREV_QUICKLIME);
 		weight:						1;
 		is_freight:					1;
-		cargo_classes:				bitmask(CC_LIQUID);
-		cargo_label:				"FUEL";
+		cargo_classes:				bitmask(CC_BULK, CC_COVERED);
+		cargo_label:				"QLME";
 		town_growth_effect:			TOWNGROWTH_NONE;
 		town_growth_multiplier:		0;
 		units_of_cargo:				TTD_STR_TONS;
-		items_of_cargo:				string(STR_CARGO_QUANTITY_FUEL);
-		penalty_lowerbound:			20;
-		single_penalty_length:		128;
-		station_list_colour:		187;
-		cargo_payment_list_colour:	187;
-		price_factor:				param_static_payments ? 145 : 90;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_QUICKLIME);
+		penalty_lowerbound:			38;
+		single_penalty_length:		255;
+		station_list_colour:		148;
+		cargo_payment_list_colour:	148;
+		price_factor:				112;
 		capacity_multiplier:		1;
-	}
-	graphics {
-		profit:						CargoProfit();
 	}
 }
 
@@ -437,10 +394,79 @@ item (FEAT_CARGOS, cargo_varnish, 15) {
 		single_penalty_length:		255;
 		station_list_colour:		44;
 		cargo_payment_list_colour:	44;
-		price_factor:				param_static_payments ? 135 : 70;
+		price_factor:				70;
 		capacity_multiplier:		1;
 	}
-	graphics {
-		profit:						CargoProfit();
+}
+
+item (FEAT_CARGOS, cargo_fuel, 16) {
+	property {
+		number:						16;
+		sprite:						4300;
+		type_name:					string(STR_CARGO_NAME_FUEL);
+		unit_name:					string(STR_CARGO_NAME_FUEL);
+		type_abbreviation:			string(STR_CARGO_ABBREV_FUEL);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_LIQUID);
+		cargo_label:				"FUEL";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_FUEL);
+		penalty_lowerbound:			20;
+		single_penalty_length:		128;
+		station_list_colour:		187;
+		cargo_payment_list_colour:	187;
+		price_factor:				90;
+		capacity_multiplier:		1;
+	}
+}
+
+item (FEAT_CARGOS, cargo_drilling_fluid, 17) {
+	property {
+		number:						17;
+		sprite:						4314;
+		type_name:					string(STR_CARGO_NAME_DRILLING_FLUID);
+		unit_name:					string(STR_CARGO_NAME_DRILLING_FLUID);
+		type_abbreviation:			string(STR_CARGO_ABBREV_DRILLING_FLUID);
+		weight:						1;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_LIQUID);
+		cargo_label:				"ENSP";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_DRILLING_FLUID);
+		penalty_lowerbound:			20;
+		single_penalty_length:		255;
+		station_list_colour:		46;
+		cargo_payment_list_colour:	46;
+		price_factor:				170;
+		capacity_multiplier:		1;		
+	}
+}
+
+item (FEAT_CARGOS, cargo_starch, 18) {
+	property {
+		number:						18;
+		sprite:						4303;
+		type_name:					string(STR_CARGO_NAME_STARCH);
+		unit_name:					string(STR_CARGO_NAME_STARCH);
+		type_abbreviation:			string(STR_CARGO_ABBREV_STARCH);
+		weight:						1.0;
+		is_freight:					1;
+		cargo_classes:				bitmask(CC_BULK, CC_POWDERIZED, CC_COVERED);
+		cargo_label:				"BAKE";
+		town_growth_effect:			TOWNGROWTH_NONE;
+		town_growth_multiplier:		1.0;
+		units_of_cargo:				TTD_STR_TONS;
+		items_of_cargo:				string(STR_CARGO_QUANTITY_STARCH);
+		penalty_lowerbound:			4;
+		single_penalty_length:		40;
+		station_list_colour:		65;
+		cargo_payment_list_colour:	65;
+		price_factor:				116;
+		capacity_multiplier:		1;		
 	}
 }

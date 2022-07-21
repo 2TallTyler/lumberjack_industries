@@ -22,25 +22,27 @@ STR_PARAM_STATIC_PAYMENTS_DESC      :{LTBLUE}Default value: {ORANGE}On{}{WHITE}I
 STR_TOWN                            :{STRING}
 STR_STATION                         :{STRING} {STRING}
 
-STR_LOGGING_CAMP_HELPTEXT           :Only produces December through March.{}{}To {WHITE}Double{BLACK} production, deliver 24 units of Food per month.
-STR_FARM_HELPTEXT                   :Only produces September through November. Load into vehicles promptly to avoid spoilage.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
-STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Food per month.
-STR_KAOLIN_MINE_HELPTEXT            :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
-STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
-STR_BAKERY_HELPTEXT                 :Production efficiency per unit of Wheat:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Packaging
-STR_FURNITURE_FACTORY_HELPTEXT      :Production efficiency per unit of Lumber:{} {WHITE}Half{BLACK}: 1 Worker{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Varnish
-STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit of Logs:{} {WHITE}Quarter{BLACK}: 1 Worker{} {WHITE}Half{BLACK}: 1 Worker + 0.5 Kaolin or 0.5 Chemicals{} {WHITE}Full{BLACK}: 1 Worker + 0.5 Kaolin + 0.5 Chemicals
+STR_NAME_OBJECT_MENU                :Industry Tiles
 
-STR_NAME_LOGGING_CAMP               :Logging Camp
+STR_FARM_HELPTEXT                   :Only produces September through November. Load into vehicles promptly to avoid spoilage.{}{}To {WHITE}Double{BLACK} harvest, deliver 24 units of Fertilizer per month.
+STR_OIL_RIG_HELPTEXT                :To {WHITE}Double{BLACK} production, deliver 24 units of Drilling Fluid per month.
+STR_LIMESTONE_QUARRY_HELPTEXT       :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
+STR_COAL_MINE_HELPTEXT              :To {WHITE}Double{BLACK} production, deliver 24 units of Fuel per month.
+
+STR_INCREASE_EFFICIENCY             :{BLACK}To {WHITE}increase efficiency{BLACK}, transport more passengers in this town.
+STR_MAX_EFFICIENCY                  :{BLACK}To keep {WHITE}maximum efficiency{BLACK}, keep transporting passengers in this town.
+STR_SECONDARY_HELPTEXT              :{SKIP}{SKIP}Consumes 1 unit of each input cargo per 5 population. Current maximum {YELLOW}{UNSIGNED_WORD}{BLACK}/month.{}{}Production efficiency: {SKIP}{YELLOW}{UNSIGNED_WORD}% {SKIP}{BLACK}{}{}{STRING}
+
+STR_NAME_FOREST                     :Forest
 STR_NAME_PAPER_MILL                 :Paper Mill
 STR_NAME_FARM                       :Farm
 STR_NAME_BAKERY                     :Bakery
-STR_NAME_BOX_FACTORY                :Box Factory
+STR_NAME_PRINTING_WORKS             :Printing Works
 STR_NAME_OIL_RIG                    :Oil Rig
 STR_NAME_OIL_REFINERY               :Oil Refinery
-STR_NAME_KAOLIN_MINE                :Kaolin Mine
+STR_NAME_LIMESTONE_QUARRY           :Limestone Quarry
 STR_NAME_COAL_MINE                  :Coal Mine
-STR_NAME_POWER_PLANT                :Power Plant
+STR_NAME_LIME_KILN                  :Lime Kiln
 STR_NAME_FURNITURE_FACTORY          :Furniture Factory
 STR_NAME_SAWMILL                    :Sawmill
 
@@ -61,17 +63,9 @@ STR_CARGO_NAME_LUMBER               :Lumber
 STR_CARGO_ABBREV_LUMBER             :{TINYFONT}LU
 STR_CARGO_QUANTITY_LUMBER           :{WEIGHT} of lumber
 
-STR_CARGO_NAME_PACKAGING            :Packaging
-STR_CARGO_ABBREV_PACKAGING          :{TINYFONT}PA
-STR_CARGO_QUANTITY_PACKAGING        :{WEIGHT} of packaging
-
 STR_CARGO_NAME_FERTILIZER           :Fertilizer
 STR_CARGO_ABBREV_FERTILIZER         :{TINYFONT}FT
 STR_CARGO_QUANTITY_FERTILIZER       :{WEIGHT} of fertilizer
-
-STR_CARGO_NAME_KAOLIN               :Kaolin
-STR_CARGO_ABBREV_KAOLIN             :{TINYFONT}KL
-STR_CARGO_QUANTITY_KAOLIN           :{WEIGHT} of kaolin
 
 STR_CARGO_NAME_FUEL                 :Fuel
 STR_CARGO_ABBREV_FUEL               :{TINYFONT}FU
@@ -84,3 +78,23 @@ STR_CARGO_QUANTITY_VARNISH          :{WEIGHT} of varnish
 STR_CARGO_NAME_LOGS                 :Logs
 STR_CARGO_ABBREV_LOGS               :{TINYFONT}LG
 STR_CARGO_QUANTITY_LOGS             :{WEIGHT} of logs
+
+STR_CARGO_NAME_WDCH                 :Wood Chips
+STR_CARGO_ABBREV_WDCH               :{TINYFONT}WC
+STR_CARGO_QUANTITY_WDCH             :{WEIGHT} of wood chips
+
+STR_CARGO_NAME_LIMESTONE            :Limestone
+STR_CARGO_ABBREV_LIMESTONE          :{TINYFONT}LS
+STR_CARGO_QUANTITY_LIMESTONE        :{WEIGHT} of limestone
+
+STR_CARGO_NAME_QUICKLIME            :Quicklime
+STR_CARGO_ABBREV_QUICKLIME          :{TINYFONT}QL
+STR_CARGO_QUANTITY_QUICKLIME        :{WEIGHT} of quicklime
+
+STR_CARGO_NAME_DRILLING_FLUID       :Drilling Fluid
+STR_CARGO_ABBREV_DRILLING_FLUID     :{TINYFONT}DF
+STR_CARGO_QUANTITY_DRILLING_FLUID   :{WEIGHT} of drilling fluid
+
+STR_CARGO_NAME_STARCH               :Starch
+STR_CARGO_ABBREV_STARCH             :{TINYFONT}ST
+STR_CARGO_QUANTITY_STARCH           :{WEIGHT} of starch

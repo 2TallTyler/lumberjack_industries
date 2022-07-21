@@ -51,7 +51,19 @@ switch (FEAT_INDUSTRIES, SELF, TownHasPopulation, required, TownPopulation() > r
  * @param The required population, set by NewGRF Parameters
  * @return 1 if the town has the required population, else 0.
  */
-switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (param_secondary_pop + (param_secondary_pop * (industry_town_count(industry_bakery) + industry_town_count(industry_box_factory) + industry_town_count(industry_oil_refinery) + industry_town_count(industry_paper_mill) + industry_town_count(industry_furniture_factory) + industry_town_count(industry_sawmill))))) {return;}
+switch (FEAT_INDUSTRIES, SELF, TownHasSecondaryPopulation, TownPopulation() >= (param_secondary_pop + (param_secondary_pop * (industry_town_count(industry_bakery) + industry_town_count(industry_printing_works) + industry_town_count(industry_oil_refinery) + industry_town_count(industry_paper_mill) + industry_town_count(industry_furniture_factory) + industry_town_count(industry_sawmill))))) {return;}
+
+/**
+ * Is the parent town a city?
+ * @return True if it is a city, else false.
+ */
+switch (FEAT_INDUSTRIES, PARENT, IsCity, is_city) {return;}
+
+/**
+ * Is the parent town a town? (as oppposed to a city)
+ * @return True if it is a town, else false.
+ */
+ switch (FEAT_INDUSTRIES, PARENT, IsTown, !is_city) {return;}
 
 /**
  * Check if there are any industries of a given type within a given distance.
@@ -97,71 +109,43 @@ switch (FEAT_INDUSTRIES, SELF, IsNearMapEdge,
 	((map_y_edge - GetTileY()) < 32)
 ) {return;}
 
-/* CARGO CALLBACKS */
-
 /**
- * Get the default station rating based on the time since cargo was last picked up. Unchanged from vanilla OpenTTD mechanics.
- * @return The rating calculation.
+ * Get the adjusted production efficiency, where transporting 75% of possible passengers gives 100% production efficiency.
+ * @return The adjusted efficiency, from 0..100.
  */
-switch (FEAT_CARGOS, SELF, GetRatingFromTime, getbits(extra_callback_info2, 0, 8)) {
-	0..3: return 130;
-	4..6: return 95;
-	7..12: return 50;
-	13..21: return 25;
-	return 0;
+switch (FEAT_INDUSTRIES, PARENT, GetAdjustedProductionEfficiency, percent_transported_passengers) {
+    0: return 0;
+    return min(percent_transported_passengers + 25, 100);
 }
 
 /**
- * Get the default station rating based on the amount of cargo waiting. Unchanged from vanilla OpenTTD mechanics.
- * @return The rating calculation.
+ * Get the secondary production level of a town, 1/5 the population divided by 8 production ticks per month, multiplied by the percentage of transported passengers.
+ * @return The production per 256 ticks.
  */
-switch (FEAT_CARGOS, SELF, GetRatingFromCargo, getbits(extra_callback_info2, 8, 16)) {
-	0..100: return 40;
-	101..300: return 30;
-	301..600: return 10;
-	601..1000: return 0;
-	1001..1500: return -35;
-	return -90;
+switch (FEAT_INDUSTRIES, SELF, GetSecondaryProductionLevel, (TownPopulation() / 5 / 8 * GetAdjustedProductionEfficiency()) / 100) {return;}
+
+/* TEXT STACKS */
+
+/**
+ * Choose the correct string for the helptext about transporting more passengers in town.
+ * @return The string ID for the correct helptext, either telling passengers to transport more, or to keep up the good work.
+ */
+switch (FEAT_INDUSTRIES, SELF, StringIncreaseProductionEfficiency, GetAdjustedProductionEfficiency()) {
+    0..99: return string(STR_INCREASE_EFFICIENCY);
+    return string(STR_MAX_EFFICIENCY);
 }
 
 /**
- * Get the default station rating based on the speed of the last vehicle to pick up cargo. Unchanged from vanilla OpenTTD mechanics.
- * @return The rating calculation.
+ * Build text stack for secondary industry helptext.
+ * @return The helptext string with substrings and values from the text stack.
  */
-switch (FEAT_CARGOS, SELF, GetRatingFromSpeed, getbits(extra_callback_info2, 24, 8)) {
-	0..85: return 0;
-	86..254: return (getbits(extra_callback_info2, 24, 8) - 85) / 4;
-	return 42; // Max speed units is 255: (255 - 85) / 4 = 42
-}
-
-/**
- * Nerf station ratings if there is too much cargo stored there.
- * @param maximum The maximum storage allowed before nerfing the station rating for a given cargo.
- * @return 0 to nerf the rating if too much cargo is stored, else return the default rating calculation.
- */
-switch (FEAT_CARGOS, SELF, MaxStationStorage, maximum, (getbits(extra_callback_info2, 8, 16) > maximum)) {
-	1: return 0;
-	return GetRatingFromTime() + GetRatingFromCargo() + GetRatingFromSpeed();
-}
-
-/**
- * Calculate the cargo profit if enabled in NewGRF parameters, or let the callback fail to use the default calculation.
- * This function scales the payment by the map size, so larger maps give greater payments to avoid running costs eating your profits.
- * Base game code scales this returned value by the cargo value and amount transported.
- * @return a custom cargo profit if param_static_payments is enabled, else return CB_FAILED.
- */
-switch (FEAT_CARGOS, SELF, CargoProfit, param_static_payments) {1: return 128 + (map_max_edge / 8); return CB_FAILED;}
+switch (FEAT_INDUSTRIES, SELF, StringGetSecondaryHelptext, [
+    STORE_TEMP(TownPopulation() / 5, 257),                          // list the next population goal (or say we've reached it)
+    STORE_TEMP(GetAdjustedProductionEfficiency(), 258),             // current production efficiency
+    STORE_TEMP(StringIncreaseProductionEfficiency() + 0xD000, 259)  // helptext to increase efficiency by transporting more passengers, if <100%, else an empty string
+]) {return string(STR_SECONDARY_HELPTEXT);}
 
 /* PRODUCTION BLOCKS */
 
 /* Empty production block. */
 produce (produce_none, [], [])
-
-/* Consume idle workers (no cargo available to process). */ 
-produce (produce_idle_workers, [PASS: (incoming_cargo_waiting("PASS") > 200) ? (incoming_cargo_waiting("PASS") / 8) : 3;], [], 0)
-
-/* Check if we have idle workers to consume, else consume nothing. */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_idle, incoming_cargo_waiting("PASS") > 0) {
-	1: produce_idle_workers;
-	produce_none;
-}

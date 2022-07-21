@@ -43,9 +43,9 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_oil_rig,
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
-/* Boosted production if Food is supplied */
+/* Boosted production if ENSP is supplied */
 produce (produce_oil_rig_boosted,
-	[FOOD: 3;],		// Consume
+	[ENSP: 3;],		// Consume
 	[OIL_: 64;],	// Produce
 	0 				// Don't run callback again
 	)
@@ -57,17 +57,17 @@ produce (produce_oil_rig,
 	0 				// Don't run callback again
 	)
 
-/* Check for Food for normal or boosted production */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("FOOD") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
+/* Check for ENSP for normal or boosted production */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_rig, incoming_cargo_waiting("ENSP") >= 3) {1: produce_oil_rig_boosted; produce_oil_rig;}
 
 /* Don't build up too large a stockpile */
 produce (produce_oil_rig_stockpile,
-	[FOOD: 1;],               // Consume
+	[ENSP: 1;],               // Consume
 	[],                       // Produce
 	1                         // Run callback again
 	)
 
-switch (FEAT_INDUSTRIES, SELF, switch_stockpile_oil_rig, incoming_cargo_waiting("FOOD") > 4096) {1: produce_oil_rig_stockpile; produce_none;}
+switch (FEAT_INDUSTRIES, SELF, switch_stockpile_oil_rig, incoming_cargo_waiting("ENSP") > 4096) {1: produce_oil_rig_stockpile; produce_none;}
 
 /* END PRODUCTION */
 
@@ -76,7 +76,7 @@ item (FEAT_INDUSTRIES, industry_oil_rig, 5) {
 		substitute: INDUSTRYTYPE_OIL_RIG;
 		life_type: IND_LIFE_TYPE_EXTRACTIVE;
 		cargo_types: [
-			accept_cargo("FOOD"),
+			accept_cargo("ENSP"),
 			produce_cargo("OIL_", 0),
             ];
 		spec_flags: bitmask(IND_FLAG_BUILT_ON_WATER, IND_FLAG_AI_CREATES_AIR_AND_SHIP_ROUTES);

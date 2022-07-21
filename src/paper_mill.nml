@@ -70,92 +70,54 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_paper_mill, IsBeingFunded() || (IsNearT
 
 /* BEGIN PRODUCTION: Read up from bottom */
 
-produce (produce_paper_mill_efficient,
-	[PASS: 4; WOOD: 8; RFPR: 4; KAOL: 4;],   // Consume
-	[PAPR: 8;],                              // Produce
-	1                                        // Run callback again
-	)
+/** REGISTERS
+  * 1: Target input consumption based on town size and transport goals
+  * 2: Passenger production amount
+  * 3: Amount of Wood Chips to consume
+  * 4: Amount of Logs to comsume
+  */ 
 
-produce (produce_paper_mill_improved_kaolin,
-	[PASS: 4; WOOD: 8; KAOL: 4;],   // Consume
-	[PAPR: 4;],                     // Produce
-	1                               // Run callback again
-	)
+produce (produce_paper_mill,
+    [WDCH: LOAD_TEMP(3); WOOD: LOAD_TEMP(4); QLME: LOAD_TEMP(1); RFPR: LOAD_TEMP(1); BAKE: LOAD_TEMP(1); COAL: LOAD_TEMP(1);], // consume
+    [PAPR: LOAD_TEMP(1) * 2; COAT: LOAD_TEMP(1) / 2; ENSP: LOAD_TEMP(1) / 2; PASS: LOAD_TEMP(2);],                             // produce
+    0                                                                                                                          // don't run callback again
+)
 
-produce (produce_paper_mill_improved_chemicals,
-	[PASS: 4; WOOD: 8; RFPR: 4;],   // Consume
-	[PAPR: 4;],                     // Produce
-	1                               // Run callback again
-	)
+/* Determine the production level */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_2, [
+    /* Get the target production amount */
+    STORE_TEMP(GetSecondaryProductionLevel(), 1),
 
-produce (produce_paper_mill_basic,
-	[PASS: 4; WOOD: 8;],    // Consume
-	[PAPR: 2;],             // Produce
-	1                       // Run callback again
-	)
+    /* Adjust the target production to the lowest input stockpile */
+    STORE_TEMP(min(LOAD_TEMP(1),
+        min(
+            min(
+                min(incoming_cargo_waiting("RFPR"), incoming_cargo_waiting("BAKE")), 
+                min(incoming_cargo_waiting("COAL"), incoming_cargo_waiting("QLME"))
+            ),
+            incoming_cargo_waiting("WDCH") + incoming_cargo_waiting("WOOD")
+        )), 1),
+    /* Use Wood Chips before Logs */
+    STORE_TEMP(min(LOAD_TEMP(1), incoming_cargo_waiting("WDCH")), 3),
+    /* Make up the rest in normal input. */
+    STORE_TEMP(LOAD_TEMP(1) - LOAD_TEMP(3), 4),
 
-/* Is production super-boosted by Kaolin and Chemicals? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_super_boosted_kaolin, incoming_cargo_waiting("KAOL") >= 4) {
-	1: produce_paper_mill_efficient;
-	produce_paper_mill_improved_chemicals;
-}
+    /* Set the passenger production amount. */
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("PAPR")) / 100), 2),
+    ]) {produce_paper_mill;}
 
-/* Is production boosted by Kaolin? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_boosted_kaolin, incoming_cargo_waiting("KAOL") >= 4) {
-	1: produce_paper_mill_improved_kaolin;
-	produce_paper_mill_basic;
-}
-
-/* Is production boosted by Chemicals? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_boosted_chemicals, incoming_cargo_waiting("RFPR") >= 4) {
-	1: switch_produce_paper_mill_super_boosted_kaolin;
-	switch_produce_paper_mill_boosted_kaolin;
-}
-
-/* Consume extra Wood*/
-produce (produce_paper_mill_wood_stockpile,
-	[WOOD: 1;],             // Consume
-	[],                     // Produce
-	1                       // Run callback again
-	)
-
-/* Consume extra Kaolin */
-produce (produce_paper_mill_kaolin_stockpile,
-	[KAOL: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
-
-/* Consume extra Chemicals */
-produce (produce_paper_mill_chemicals_stockpile,
-	[RFPR: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
-
-/* Should we consume extra Kaolin? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_idle_3, incoming_cargo_waiting("KAOL") > 4096) {
-	1: produce_paper_mill_kaolin_stockpile;
-	produce_none;
-}
-
-/* Should we consume extra Chemicals? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_idle_2, incoming_cargo_waiting("RFPR") > 4096) {
-	1: produce_paper_mill_chemicals_stockpile;
-	switch_produce_paper_mill_idle_3;
-}
-
-/* Should we consume extra Wood? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill_idle, incoming_cargo_waiting("WOOD") > 4096) {
-	1: produce_paper_mill_wood_stockpile;
-	switch_produce_paper_mill_idle_2;
-}
-
-/* Check if we have both Workers and Wood */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("WOOD") >= 8)) {
-	1: switch_produce_paper_mill_boosted_chemicals;
-	switch_produce_paper_mill_idle;
-}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_paper_mill, 
+    (incoming_cargo_waiting("WOOD") > 0 || incoming_cargo_waiting("WDCH")) && 
+    incoming_cargo_waiting("QLME") > 0 &&
+    incoming_cargo_waiting("RFPR") > 0 &&
+    incoming_cargo_waiting("BAKE") > 0 &&
+    incoming_cargo_waiting("COAL") > 0
+    )
+    {
+        1: switch_produce_paper_mill_2;
+        produce_none;
+    }
 
 /* END PRODUCTION */
 
@@ -164,11 +126,16 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 14) {
 		substitute:	INDUSTRYTYPE_PAPER_MILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
-			accept_cargo("PASS"),
 			accept_cargo("WOOD"),
-			accept_cargo("KAOL"),
+            accept_cargo("WDCH"),
+			accept_cargo("QLME"),
 			accept_cargo("RFPR"),
+            accept_cargo("BAKE"),
+            accept_cargo("COAL"),
 			produce_cargo("PAPR", 0),
+			produce_cargo("COAT", 0),
+			produce_cargo("ENSP", 0),
+            produce_cargo("PASS", 0),
 		];
 		name: string(STR_NAME_PAPER_MILL);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_PAPER_MILL));
@@ -179,10 +146,9 @@ item (FEAT_INDUSTRIES, industry_paper_mill, 14) {
 		map_colour: 14;
 	}
 	graphics {
-		location_check: loc_check_paper_mill;
-		produce_256_ticks: switch_produce_idle;
-		produce_cargo_arrival: switch_produce_paper_mill;
-		extra_text_industry: string(STR_PAPER_MILL_HELPTEXT);
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_paper_mill;
+		produce_256_ticks: switch_produce_paper_mill;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

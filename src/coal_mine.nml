@@ -58,7 +58,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_7) {
 }
 
 /* Construction check for Coal Mine */
-switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, !IsNearTown() && IndustryElevationCheck(6, 255) && NoNearbyCompetitors(industry_coal_mine, 20) && IsInQuadrantN())
+switch (FEAT_INDUSTRIES, SELF, loc_check_coal_mine, !IsNearTown() && IndustryElevationCheck(6, 255) && NoNearbyCompetitors(industry_coal_mine, 20))
 	{1: return CB_RESULT_LOCATION_ALLOW; return CB_RESULT_LOCATION_DISALLOW;}
 
 /* BEGIN PRODUCTION: Read up from bottom */
@@ -101,7 +101,7 @@ item (FEAT_INDUSTRIES, industry_coal_mine, 16) {
             ];
 		name: string(STR_NAME_COAL_MINE);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_COAL_MINE));
-		prob_map_gen: 4;
+		prob_map_gen: 1;
 		prob_in_game: 0;
 		fund_cost_multiplier: 40;
 	}

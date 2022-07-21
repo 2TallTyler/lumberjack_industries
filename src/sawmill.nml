@@ -47,28 +47,33 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_sawmill, IsBeingFunded() || (IsNearTown
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_sawmill,
-	[PASS: 1; WOOD: 1;],	// Consume
-	[WDPR: 1;],				// Produce
-	1 						// Run callback again
-	)
+    [WOOD: LOAD_TEMP(1); RFPR: LOAD_TEMP(1);], // consume
+    [WDPR: LOAD_TEMP(1) * 2; PASS: LOAD_TEMP(2);], // produce
+    0                                          // don't run callback again
+)
 
-produce (produce_sawmill_stockpile,
-	[WOOD: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_min, [
+    STORE_TEMP(min(incoming_cargo_waiting("WOOD"), incoming_cargo_waiting("RFPR")), 1), // Set the production amount to the current input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("WDPR")) / 100), 2), // Set the passenger production level
+    ]) {produce_sawmill;}
 
-/* Should we consume extra Logs? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_idle, incoming_cargo_waiting("WOOD") > 4096) {
-	1: produce_sawmill_stockpile;
-	produce_none;
-}
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("WDPR")) / 100), 2), // Set the passenger production level
+    min(incoming_cargo_waiting("WOOD"), incoming_cargo_waiting("RFPR")) > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_sawmill;
+        switch_produce_sawmill_min;
+    }
 
-/* Check if we have both Workers and Logs */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill, (incoming_cargo_waiting("PASS") > 0 && incoming_cargo_waiting("WOOD") > 0)) {
-	1: produce_sawmill;
-	switch_produce_sawmill_idle;
-}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_sawmill, incoming_cargo_waiting("WOOD") > 0 && incoming_cargo_waiting("RFPR") > 0)
+    {
+        1: switch_produce_sawmill_2;
+        produce_none;
+    }
 
 /* END PRODUCTION */
 
@@ -77,8 +82,10 @@ item (FEAT_INDUSTRIES, industry_sawmill, 19) {
 		substitute:	INDUSTRYTYPE_SAWMILL;
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
-			accept_cargo("PASS"),
-			accept_cargo("WOOD", produce_cargo("WDPR", 0.5)),
+			accept_cargo("WOOD"),
+            accept_cargo("RFPR"),
+            produce_cargo("WDPR", 0),
+            produce_cargo("PASS", 0),
 		];
 		name: string(STR_NAME_SAWMILL);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_SAWMILL));
@@ -88,9 +95,9 @@ item (FEAT_INDUSTRIES, industry_sawmill, 19) {
 		map_colour: 63;
 	}
 	graphics {
-		location_check: loc_check_sawmill;
-		produce_256_ticks: switch_produce_idle;
-		produce_cargo_arrival: switch_produce_sawmill;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_sawmill;
+		produce_256_ticks: switch_produce_sawmill;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
 		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;

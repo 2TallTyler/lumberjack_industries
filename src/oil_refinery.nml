@@ -55,28 +55,33 @@ switch (FEAT_INDUSTRIES, SELF, loc_check_oil_refinery, IsBeingFunded() || (IsNea
 /* BEGIN PRODUCTION: Read up from bottom */
 
 produce (produce_oil_refinery,
-	[PASS: 4; OIL_: 4;],            // Consume
-	[RFPR: 1; FERT: 1; FUEL: 1; COAT: 1;],   // Produce
-	1                               // Run callback again
-	)
+    [OIL_: LOAD_TEMP(1);],                                                 // consume
+    [RFPR: LOAD_TEMP(1) / 2; FUEL: LOAD_TEMP(1) / 2; PASS: LOAD_TEMP(2);], // produce
+    0                                                                      // don't run callback again
+)
 
-produce (produce_oil_refinery_stockpile,
-	[OIL_: 1;],               // Consume
-	[],                       // Produce
-	1                         // Run callback again
-	)
+/* If we don't have enough stored, produce as much as we can anyway. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_min, [
+    STORE_TEMP(incoming_cargo_waiting("OIL_"), 1), // Set the production amount to the current input stockpile
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("RFPR")) / 100), 2), // Set the passenger production level
+    ]) {produce_oil_refinery;}
 
-/* Should we consume extra Oil? */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_idle, incoming_cargo_waiting("OIL_") > 4096) {
-	1: produce_oil_refinery_stockpile;
-	produce_none;
-}
+/* Determine the production level and see if we have enough stored to meet it. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery_2, [
+    STORE_TEMP(GetSecondaryProductionLevel(), 1), // Get production level
+    STORE_TEMP((((LOAD_TEMP(1) / 4) * transported_last_month_pct("RFPR")) / 100), 2), // Set the passenger production level
+    incoming_cargo_waiting("OIL_") > LOAD_TEMP(1), // Check if there's enough input cargo for this production level
+    ]) {
+        1: produce_oil_refinery;
+        switch_produce_oil_refinery_min;
+    }
 
-/* Check if we have both Workers and Oil */
-switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, (incoming_cargo_waiting("PASS") >= 4 && incoming_cargo_waiting("OIL_") >= 4)) {
-	1: produce_oil_refinery;
-	switch_produce_oil_refinery_idle;
-}
+/* If no cargo is waiting, bail out. */
+switch (FEAT_INDUSTRIES, SELF, switch_produce_oil_refinery, incoming_cargo_waiting("OIL_") > 0)
+    {
+        1: switch_produce_oil_refinery_2;
+        produce_none;
+    }
 
 /* END PRODUCTION */
 
@@ -85,12 +90,10 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 4) {
 		substitute:	INDUSTRYTYPE_OIL_REFINERY;
 		life_type: IND_LIFE_TYPE_PROCESSING;
 		cargo_types: [
-			accept_cargo("PASS"),
 			accept_cargo("OIL_"),
 			produce_cargo("FUEL", 0),
 			produce_cargo("RFPR", 0),
-			produce_cargo("FERT", 0),
-			produce_cargo("COAT", 0),
+            produce_cargo("PASS", 0),
 		];
 		name: string(STR_NAME_OIL_REFINERY);
 		nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_NAME_OIL_REFINERY));
@@ -100,9 +103,9 @@ item (FEAT_INDUSTRIES, industry_oil_refinery, 4) {
 		map_colour: 187;
 	}
 	graphics {
-		location_check: loc_check_oil_refinery;
-		produce_256_ticks: switch_produce_idle;
-		produce_cargo_arrival: switch_produce_oil_refinery;
+		extra_text_industry: StringGetSecondaryHelptext();
+        location_check: loc_check_oil_refinery;
+		produce_256_ticks: switch_produce_oil_refinery;
 		colour: COLOUR_ORANGE;
 		/* Don't allow any production changes */
 		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
