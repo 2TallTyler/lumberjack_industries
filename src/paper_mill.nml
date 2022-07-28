@@ -4,7 +4,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_1) {
 	property {
 		substitute: 64;
 		override: 64;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -12,7 +13,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_2) {
 	property {
 		substitute: 65;
 		override: 65;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -20,7 +22,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_3) {
 	property {
 		substitute: 66;
 		override: 66;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -28,7 +31,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_4) {
 	property {
 		substitute: 67;
 		override: 67;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -36,7 +40,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_5) {
 	property {
 		substitute: 68;
 		override: 68;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -44,7 +49,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_6) {
 	property {
 		substitute: 69;
 		override: 69;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -52,7 +58,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_7) {
 	property {
 		substitute: 70;
 		override: 70;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -60,7 +67,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_paper_mill_8) {
 	property {
 		substitute: 71;
 		override: 71;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 

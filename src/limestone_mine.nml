@@ -5,6 +5,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_1) {
 	property {
 		substitute: 72;
 		override: 72;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -13,6 +14,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_2) {
 	property {
 		substitute: 73;
 		override: 73;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -21,6 +23,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_3) {
 	property {
 		substitute: 74;
 		override: 74;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -29,6 +32,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_4) {
 	property {
 		substitute: 75;
 		override: 75;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -37,6 +41,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_5) {
 	property {
 		substitute: 76;
 		override: 76;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -45,6 +50,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_6) {
 	property {
 		substitute: 77;
 		override: 77;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -53,6 +59,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_7) {
 	property {
 		substitute: 78;
 		override: 78;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -61,6 +68,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_8) {
 	property {
 		substitute: 79;
 		override: 79;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -69,6 +77,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_9) {
 	property {
 		substitute: 80;
 		override: 80;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -77,6 +86,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_10) {
 	property {
 		substitute: 81;
 		override: 81;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -85,6 +95,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_11) {
 	property {
 		substitute: 82;
 		override: 82;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -93,6 +104,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_12) {
 	property {
 		substitute: 83;
 		override: 83;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -101,6 +113,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_13) {
 	property {
 		substitute: 84;
 		override: 84;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -109,6 +122,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_14) {
 	property {
 		substitute: 85;
 		override: 85;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -117,6 +131,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_15) {
 	property {
 		substitute: 86;
 		override: 86;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -125,6 +140,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_16) {
 	property {
 		substitute: 87;
 		override: 87;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -133,6 +149,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_limestone_mine_17) {
 	property {
 		substitute: 88;
 		override: 88;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }

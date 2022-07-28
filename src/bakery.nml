@@ -5,6 +5,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_1) {
 	property {
 		substitute: 60;
 		override: 60;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -13,6 +14,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_2) {
 	property {
 		substitute: 61;
 		override: 61;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -21,6 +23,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_3) {
 	property {
 		substitute: 62;
 		override: 62;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -29,6 +32,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_bakery_4) {
 	property {
 		substitute: 63;
 		override: 63;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }

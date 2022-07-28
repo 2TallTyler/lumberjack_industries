@@ -5,6 +5,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_1) {
 	property {
 		substitute: 0;
 		override: 0;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -13,6 +14,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_2) {
 	property {
 		substitute: 1;
 		override: 1;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -21,6 +23,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_3) {
 	property {
 		substitute: 2;
 		override: 2;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -29,6 +32,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_4) {
 	property {
 		substitute: 3;
 		override: 3;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -37,6 +41,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_5) {
 	property {
 		substitute: 4;
 		override: 4;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -45,6 +50,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_6) {
 	property {
 		substitute: 5;
 		override: 5;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -53,6 +59,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_coal_mine_7) {
 	property {
 		substitute: 6;
 		override: 6;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }

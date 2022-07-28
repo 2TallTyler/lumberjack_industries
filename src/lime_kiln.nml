@@ -5,6 +5,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_1) {
 	property {
 		substitute: 7;
 		override: 7;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -13,6 +14,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_2) {
 	property {
 		substitute: 8;
 		override: 8;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -21,6 +23,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_3) {
 	property {
 		substitute: 9;
 		override: 9;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }
@@ -29,6 +32,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_lime_kiln_4) {
 	property {
 		substitute: 10;
 		override: 10;
+        accepted_cargos: [[PASS, 8]];
 		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
 	}
 }

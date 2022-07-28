@@ -4,7 +4,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_sawmill_1) {
 	property {
 		substitute: 11;
 		override: 11;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -12,7 +13,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_sawmill_2) {
 	property {
 		substitute: 12;
 		override: 12;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -20,7 +22,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_sawmill_3) {
 	property {
 		substitute: 13;
 		override: 13;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -28,7 +31,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_sawmill_4) {
 	property {
 		substitute: 14;
 		override: 14;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -36,7 +40,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_sawmill_5) {
 	property {
 		substitute: 15;
 		override: 15;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 

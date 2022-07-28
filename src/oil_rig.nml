@@ -6,7 +6,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_2) {
 	property {
 		substitute: 25;
 		override: 25;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -14,15 +15,17 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_3) {
 	property {
 		substitute: 26;
 		override: 26;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
-	}
+        accepted_cargos: [[PASS, 8]];
+        special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}0
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_4) {
 	property {
 		substitute: 27;
 		override: 27;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -30,7 +33,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_rig_5) {
 	property {
 		substitute: 28;
 		override: 28;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 

@@ -4,7 +4,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_1) {
 	property {
 		substitute: 18;
 		override: 18;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -12,7 +13,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_2) {
 	property {
 		substitute: 19;
 		override: 19;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -20,7 +22,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_3) {
 	property {
 		substitute: 20;
 		override: 20;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -28,7 +31,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_4) {
 	property {
 		substitute: 21;
 		override: 21;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -36,7 +40,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_5) {
 	property {
 		substitute: 22;
 		override: 22;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 
@@ -44,7 +49,8 @@ item (FEAT_INDUSTRYTILES, ind_tile_oil_refinery_6) {
 	property {
 		substitute: 23;
 		override: 23;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+        accepted_cargos: [[PASS, 8]];
+        special_FLAGS: BITMASK(INDTILE_FLAG_ACCEPT_aLL);
 	}
 }
 

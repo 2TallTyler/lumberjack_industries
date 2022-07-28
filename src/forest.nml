@@ -31,6 +31,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_forest_10h) {
         substitute: 16;
         override: 16;
         accepted_cargos: [[PASS, 8]];
+        special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
     }
 }
 
