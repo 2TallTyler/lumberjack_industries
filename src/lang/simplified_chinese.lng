@@ -80,7 +80,7 @@ STR_CARGO_NAME_FUEL                 :燃料
 STR_CARGO_ABBREV_FUEL               :{TINYFONT}燃
 STR_CARGO_QUANTITY_FUEL             :{WEIGHT}燃料
 
-STR_CARGO_NAME_VARNISH              :5清漆
+STR_CARGO_NAME_VARNISH              :清漆
 STR_CARGO_ABBREV_VARNISH            :{TINYFONT}漆
 STR_CARGO_QUANTITY_VARNISH          :{WEIGHT}清漆
 
