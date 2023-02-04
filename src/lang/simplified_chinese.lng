@@ -1,0 +1,89 @@
+##grflangid 0x56
+##plural 0
+
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}我是个伐木工，我一切都好。{BLACK} 这是针对于寒带气候的、专注于游戏体验的工业模组。{}{}{ORANGE}访问网站以获取更多信息！{}{}{BLACK}由2TallTyler创作。
+
+STR_WEBSITE                         :https://github.com/2TallTyler/lumberjack_industries/blob/main/README.md
+
+STR_ERROR_GAME_VERSION              :{TITLE}需要OpenTTD在1.10.0版本以上，使用0.34版本以上的JGRPP改版则将更好。
+STR_ERROR_NO_ITL                    :{TITLE}需要1.4.0以上版本的增强城镇布局（Improved Town Layouts）模组。
+STR_ERROR_INCOMPATIBLE_SET          :{YELLOW}{TITLE}{WHITE}和{YELLOW}{STRING}{WHITE}不兼容。
+
+STR_PARAM_SECONDARY_POP_NAME        :每种第二产业的城镇人口
+STR_PARAM_SECONDARY_POP_DESC        :{LTBLUE}缺省值：{ORANGE}500{}{WHITE}支撑每种第二产业（面包房、纸箱厂、炼化厂、造纸厂）所需的人口。
+
+STR_PARAM_FARM_FIELDS_NAME          :农场种植范围
+STR_PARAM_FARM_FIELDS_DESC          :{LTBLUE}缺省值：{ORANGE}开启{}{WHITE}决定农场是否在地图创建时和每个春天播种农场周围的被雪摧毁了的农田。
+
+STR_PARAM_STATIC_PAYMENTS_NAME      :静态货物运费
+STR_PARAM_STATIC_PAYMENTS_DESC      :{LTBLUE}缺省值：{ORANGE}开启{}{WHITE}倘若开启，货物运费将不取决于所运输的距离。运费将以地图尺寸进行缩放：地图越大，运费就越高。
+
+STR_PARAM_PRIMARY_QUADRANTS_NAME    :第一产业以地图象限生成
+STR_PARAM_PRIMARY_QUADRANTS_DESC    :{LTBLUE}缺省值：{ORANGE}关闭{}{WHITE}倘若开启，第一产业仅在地图的特定区域生成。
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
+
+STR_LOGGING_CAMP_HELPTEXT           :只从十二月生产到三月。{}{}为了获得{WHITE}双倍{BLACK}的产量，需要每月输送24单位的食物。
+STR_FARM_HELPTEXT                   :只从九月生产到十一月。需要及时载入车辆以防止变质。{}{}为了获得{WHITE}双倍{BLACK}的丰收，需要每月输送24单位的肥料。
+STR_OIL_RIG_HELPTEXT                :为了获得{WHITE}双倍{BLACK}的产量，需要每月输送24单位的食物。
+STR_KAOLIN_MINE_HELPTEXT            :为了获得{WHITE}双倍{BLACK}的产量，需要每月输送24单位的燃料。
+STR_COAL_MINE_HELPTEXT              :为了获得{WHITE}双倍{BLACK}的产量，需要每月输送
+STR_BAKERY_HELPTEXT                 :每单位小麦的生产效率：{} {WHITE}一半产量{BLACK}: 1工人{} {WHITE}完全产量{BLACK}: 1工人 + 0.5包装
+STR_FURNITURE_FACTORY_HELPTEXT      :Production efficiency per unit的Lumber:{} {WHITE}一半产量{BLACK}: 1工人{} {WHITE}完全产量{BLACK}: 1 工人 + 0.5清漆
+STR_PAPER_MILL_HELPTEXT             :Production efficiency per unit的Logs:{} {WHITE}四分之一产量{BLACK}: 1工人{} {WHITE}一半产量{BLACK}: 1 工人 + 0.5高岭土 or 0.5化工制品{} {WHITE}完全产量{BLACK}: 1 工人 + 0.5高岭土 + 0.5化工制品
+
+STR_NAME_LOGGING_CAMP               :伐木场
+STR_NAME_PAPER_MILL                 :造纸厂
+STR_NAME_FARM                       :农场
+STR_NAME_BAKERY                     :面包房
+STR_NAME_BOX_FACTORY                :纸箱厂
+STR_NAME_OIL_RIG                    :石油钻塔
+STR_NAME_OIL_REFINERY               :炼化厂
+STR_NAME_KAOLIN_MINE                :高岭土矿
+STR_NAME_COAL_MINE                  :煤矿
+STR_NAME_POWER_PLANT                :发电厂
+STR_NAME_FURNITURE_FACTORY          :家具厂
+STR_NAME_SAWMILL                    :锯木厂
+
+STR_CARGO_NAME_WORKERS              :工人
+STR_CARGO_SINGULAR_WORKERS          :工人
+STR_CARGO_ABBREV_WORKERS            :{TINYFONT}工
+STR_CARGO_QUANTITY_WORKERS          :{COMMA}名工人
+
+STR_CARGO_NAME_OIL                  :原油
+STR_CARGO_ABBREV_OIL                :{TINYFONT}油
+STR_CARGO_QUANTITY_OIL              :{WEIGHT}原油
+
+STR_CARGO_NAME_CHEMICALS            :化工品
+STR_CARGO_ABBREV_CHEMICALS          :{TINYFONT}化
+STR_CARGO_QUANTITY_CHEMICALS        :{WEIGHT}化工品
+
+STR_CARGO_NAME_LUMBER               :木材
+STR_CARGO_ABBREV_LUMBER             :{TINYFONT}木
+STR_CARGO_QUANTITY_LUMBER           :{WEIGHT}木材
+
+STR_CARGO_NAME_PACKAGING            :包装
+STR_CARGO_ABBREV_PACKAGING          :{TINYFONT}包
+STR_CARGO_QUANTITY_PACKAGING        :{WEIGHT}包装
+
+STR_CARGO_NAME_FERTILIZER           :肥料
+STR_CARGO_ABBREV_FERTILIZER         :{TINYFONT}肥
+STR_CARGO_QUANTITY_FERTILIZER       :{WEIGHT}肥料
+
+STR_CARGO_NAME_KAOLIN               :高岭土
+STR_CARGO_ABBREV_KAOLIN             :{TINYFONT}土
+STR_CARGO_QUANTITY_KAOLIN           :{WEIGHT}高岭土
+
+STR_CARGO_NAME_FUEL                 :燃料
+STR_CARGO_ABBREV_FUEL               :{TINYFONT}燃
+STR_CARGO_QUANTITY_FUEL             :{WEIGHT}燃料
+
+STR_CARGO_NAME_VARNISH              :5清漆
+STR_CARGO_ABBREV_VARNISH            :{TINYFONT}漆
+STR_CARGO_QUANTITY_VARNISH          :{WEIGHT}清漆
+
+STR_CARGO_NAME_LOGS                 :原木
+STR_CARGO_ABBREV_LOGS               :{TINYFONT}树
+STR_CARGO_QUANTITY_LOGS             :{WEIGHT}原木
