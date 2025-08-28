@@ -68,7 +68,7 @@ You will quickly enter a cycle of needing Workers to fuel industrial production,
 Industry probabilities and maximum production quantities are balanced such that on an average map, it will be possible to achieve 100% productivity at all generated primary industries with just the right amount of boost cargo available. (Whether or not enough Workers will exist to process this cargo depends on your town density setting.)
 
 #### Required NewGRFs
-* Improved Town Layouts 1.5.0 or better
+* [ITL Houses](https://github.com/2TallTyler/itl_houses) 1.5.0 or better
 * [Renewed Village Growth](https://www.tt-forums.net/viewtopic.php?f=65&t=87052) Game Script
 * OpenGFX+ Landscape
   * Not strictly required, but strongly recommended.
